@@ -23,7 +23,6 @@
 
 			#menu{
 				background-color: purple;
-				color: white;
 				overflow: auto;
 
 			}
@@ -32,25 +31,6 @@
 				position: fixed;
 				width: 100vw;
 				background-color: grey;
-			}
-
-
-			.menu-cell{
-				float: left;
-				height: auto;
-			}
-
-			.menu-item{
-				padding-right: 12px;
-				padding-left: 12px;
-				text-align: center;
-				border-bottom: 4px transparent solid;
-				border-top: 4px transparent solid;
-			}
-
-			.menu-item:hover{
-				border-bottom: 4px orange solid;
-				border-top: 4px orange solid;
 			}
 
 			.left-pad{
@@ -62,8 +42,32 @@
 				margin: 0;
 			}
 
-			h1{
+			ul{
+				list-style: none;
+				margin: 0;
+			}
 
+			li a{
+				display: block;
+				float: left;
+				height: auto;
+
+				text-decoration: none;
+				color: white;
+				text-align: center;
+
+				padding-top: 8px;
+				padding-bottom: 8px;
+				padding-right: 12px;
+				padding-left: 12px;
+
+				border-bottom: 4px transparent solid;
+				border-top: 4px transparent solid;
+			}
+
+			li a:hover{
+				border-bottom: 4px orange solid;
+				border-top: 4px orange solid;
 			}
 
 		</style>
@@ -75,19 +79,14 @@
 					<h1>Ben Coomes</h1>
 			</div>
 
-			<div id="menu" class="left-pad">
-				<div class="menu-cell">
-					<div class="menu-item"><p>About Me</p></div>
-				</div>
-				<div class="menu-cell">
-					<div class="menu-item"><p>Educational Experience</p></div>
-				</div>
-				<div class="menu-cell">
-					<div class="menu-item"><p>Professional Experience</p></div>
-				</div>
-				<div class="menu-cell">
-					<div class="menu-item"><p>Hobbies and Interests</p></div>
-				</div>
+			<ul id="menu" class="left-pad">
+				<li> <a href="">About Me</a> </li>
+
+				<li> <a href="">Educational Experience</a> </li>
+
+				<li> <a href="">Professional Experience</a> </li>
+
+				<li> <a href="">Hobbies and Interests</a> </li>
 			</div>
 		</div>
 		
