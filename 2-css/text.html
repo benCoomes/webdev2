@@ -1,0 +1,53 @@
+<html>
+
+	<head>
+		<title>webpage with style</title>
+
+		<!-- There arent many websafe fonts, so check out google
+		fonts to find loads of different ones. An example is shown here. -->
+		<link href="https://fonts.googleapis.com/css?family=Bungee" rel="stylesheet">
+
+		<style type="text/css">
+			#firstp{
+				font-family: 'Bungee', cursive;
+				font-size: 200%;
+			}
+
+			#secondp{
+				font-style: italic;
+				font-weight: bold;
+				word-spacing: 20px;
+			}
+
+			.underlined{
+				text-decoration: underline;
+			}
+
+			a{
+				text-decoration: none;
+				font-size: 200%;
+			}
+
+			.underline-on-hover:hover {
+				text-decoration: underline;
+			}
+			.red-on-hover:hover {
+				color: red;
+			}
+		</style>
+	</head>
+
+	<body>
+		<p id='firstp' class="red-on-hover">What fancy text this is!</p>
+
+		<p id="secondp">What a bold and italic sentnece this is!
+			<span class ="underlined">
+				What a bold, underlined, and italic sentence!
+			</span>	
+		</p>
+
+		<a href="https://www.google.com" class="underline-on-hover">Link to google</a>
+
+	</body>
+
+</html>

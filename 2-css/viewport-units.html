@@ -1,0 +1,47 @@
+<html>
+	<head>
+		<title>Viewport Units</title>
+		<style type="text/css">
+		/*
+			viewport units are vw (viewport width) and vh (viewport height).
+			1vh is 1% of the viewport height. 
+			1vw is 1% of the viewport width.
+		*/
+			.fullscreen{
+				margin:0px;
+				padding:0px;
+				width:100vw;
+				height:100px;
+			}
+
+			.halfscreen{
+				width:50vw;
+				height:100px;
+			}
+
+			.diagonaldimensions{
+				width:50vh;
+				height:50vw;
+			}
+
+			.green{
+				background-color: green;
+			}
+
+			.red{
+				background-color: red;
+			}
+
+			.blue{
+				background-color: blue;
+			}
+
+		</style>
+	</head>
+
+	<body>
+		<div class="fullscreen green"></div>
+		<div class="halfscreen red"></div>
+		<div class="diagonaldimensions blue"></div>
+	</body>
+</html>

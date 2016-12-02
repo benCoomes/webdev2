@@ -1,0 +1,45 @@
+<html>
+	<head>
+		<title>CSS</title>
+		<style type="text/css">
+		<!-- an element with relative positioning can be moved relative to where it would be if it 
+		were rendered in the normal layout of the page.
+		-->
+			#first-section{
+				background-color:red;
+				color:white;
+				width:300px;
+				position:relative;
+				left:100px;
+				top: 200px;
+				z-index:2;
+				opacity:.8;
+			}
+			#second-section{
+				background-color:blue;
+				color:white;
+				width:300px;
+				position:relative;
+				left:100px;
+				top:100px;
+				z-index:1;
+			}
+		
+		</style>
+	</head>
+	
+	<body>
+		<div id="first-section">
+			<p>first section, first sentence</p>
+			<p>first section, second sentence</p>
+		</div>
+		<div id="second-section">
+			<p>second section, first sentence</p>
+			<p>seconds section, second sentence</p>
+		
+		</div>
+		<div>
+			<p>This is not floated</p>
+		</div>
+	</body>
+</html>

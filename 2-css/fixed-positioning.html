@@ -1,0 +1,38 @@
+<html>
+	<head>
+		<title>CSS</title>
+		<style type="text/css">
+		<!-- an element with fixed positioning does not move when the page is scrolled. 
+		Like an absolute positioned element, it is positioned without regard to the flow of the page.
+		-->
+			#first-section{
+				background-color:red;
+				color:white;
+				width:300px;
+				position:fixed;
+			}
+			#second-section{
+				background-color:blue;
+				color:white;
+				width:400px;
+				height:5000px;
+			}
+		
+		</style>
+	</head>
+	
+	<body>
+		<div id="first-section">
+			<p>first section, first sentence</p>
+			<p>first section, second sentence</p>
+		</div>
+		<div id="second-section">
+			<p>second section, first sentence</p>
+			<p>seconds section, second sentence</p>
+		
+		</div>
+		<div>
+			<p>This is not floated</p>
+		</div>
+	</body>
+</html>
