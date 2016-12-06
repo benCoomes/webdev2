@@ -10,36 +10,89 @@
 		<style type="text/css">
 
 			#title{
-
 				color: white;
-				padding-top: 5px;
-				padding-bottom: 5px;
-				background-color: orange;
-				opacity: .8;
+				padding-top: 50px;
+				padding-bottom: 20px;
+				background-color: rgba(0, 50, 74, 1);
 				margin: 0;
-
-				border-bottom: 4px firebrick solid;
+				border-bottom: 4px rgba(0, 111, 165, 1) solid;
 			}
 
 			#menu{
-				background-color: purple;
-				overflow: auto;
+				background-color: rgba(0, 71, 105,1);
 
 			}
 
 			#heading{
-				position: fixed;
 				width: 100vw;
-				background-color: grey;
+			}
+
+			#heading-spacer{
+				width: 100%;
+				height: 140px;
+			}
+
+			#facebook-logo{
+				background: url(FB-f-Logo__white_72.png);
+				display: inline-block;
+				height: 32px;
+				width: 32px;
+				background-repeat: no-repeat;
+				background-size: cover;
+				margin-right: 8px;
+				margin-top: 2px;
+				margin-bottom: 2px;
+			}
+
+			#linkedin-logo{
+				background: url(In-White-75px-R.png);
+				display: inline-block;
+				height: 32px;
+				width: 32px;
+				background-repeat: no-repeat;
+				background-size: cover;
+				margin-right: 8px;
+				margin-top: 2px;
+				margin-bottom: 2px;
+			}
+
+			#personal-photo{
+				float: left;
+				margin-right: 20px;
+			}
+
+			.content-panel{
+				float: none;
+				overflow: auto;
+				margin-top: 20px;
+			}
+
+			.margin-20{
+				margin: 20
 			}
 
 			.left-pad{
-				padding-left: 256px;
+				padding-left: 16%;
+			}
+
+			.right-pad{
+				padding-right: 16%;
+			}
+
+			.float-left{
+				float: left;
+			}
+
+			.clear-float{
+				clear: both;
 			}
 
 			body{
 				font-family: 'Quicksand', sans-serif;
+				color: black;
 				margin: 0;
+				background: rgba(255,255,255,1);
+
 			}
 
 			ul{
@@ -47,10 +100,16 @@
 				margin: 0;
 			}
 
-			li a{
+			#social-bar{
+				margin-left: 64px;
+				float: left;
+			}
+
+			li a.menu-item{
 				display: block;
 				float: left;
 				height: auto;
+
 
 				text-decoration: none;
 				color: white;
@@ -58,79 +117,78 @@
 
 				padding-top: 8px;
 				padding-bottom: 8px;
-				padding-right: 12px;
-				padding-left: 12px;
+				padding-right: 0px;
+				padding-left: 0px;
+
+				margin-right: 24px; 
 
 				border-bottom: 4px transparent solid;
 				border-top: 4px transparent solid;
 			}
 
-			li a:hover{
-				border-bottom: 4px orange solid;
-				border-top: 4px orange solid;
+			li a.menu-item:hover{
+				border-bottom: 4px rgba(255, 255, 255, 1) solid;
+			}
+
+			h1{
+				margin: 0;
+				font-size: 32px;
 			}
 
 		</style>
 	</head>
 
 	<body>
+
 		<div id="heading">
 			<div id="title" class="left-pad">
-					<h1>Ben Coomes</h1>
+				<h1 class="float-left">Ben Coomes</h1>
+				<div id="social-bar">
+						<a href="https://www.linkedin.com/in/ben-coomes-95a58aaa" target="_blank"  id="linkedin-logo"></a>
+						<a href="https://www.facebook.com/ben.coomes.355" target="_blank" id="facebook-logo"></a>
+				</div>
+				<div class="clear-float"></div>
 			</div>
 
 			<ul id="menu" class="left-pad">
-				<li> <a href="">About Me</a> </li>
+				<li> <a href="#about-me" class="menu-item">About Me</a> </li>
 
-				<li> <a href="">Educational Experience</a> </li>
+				<li> <a href="#educational-experience" class="menu-item">Educational Experience</a> </li>
 
-				<li> <a href="">Professional Experience</a> </li>
+				<li> <a href="#professional-experience" class="menu-item">Professional Experience</a> </li>
 
-				<li> <a href="">Hobbies and Interests</a> </li>
+				<li> <a href="#hobbies-and-interests" class="menu-item">Hobbies and Interests</a> </li>
+
+				<li class="clear-float"></li>
+			</ul>
+
+		</div>
+
+
+		<div id="content-wrapper" class="left-pad right-pad">
+			<div class="content-panel" id="about-me">
+				<h2>About Me</h2>
+				<img id="personal-photo" src="professional-portrait.jpg"  width = "300">
+
+				<div>
+					<p>I am a computer science student at Clemson University, with minors in math and philosophy. I am interested in software development, data-driven decision making, and information security. I am also a memeber of the Clemson Cycling Team and the Clemson Symphony. I hope you enjoy my website!</p>
+				</div>
+				<div class="clear-float"></div>
+			</div>
+
+			<div class="content-panel" id="educational-experience">
+				<h2>Educational Experience</h2>
+			</div>
+
+			<div class="content-panel" id="professional-experience">
+				<h2>Professional Experience</h2>
+			</div>
+
+			<div class="content-panel" id="hobbies-and-interests">
+				<h2>Hobbies and Interests</h2>
 			</div>
 		</div>
-		
-		<div id="content-panel-1"></div>
 
-		<img src="professional-portrait.jpg" width = "300">
-		
-
-		<h2>Quick Facts</h2>
-		<ul>
-			<li>Student at Clemson University</li>
-			<li>Majoring in computer science, with minors in math and philosophy.</li>
-			<li>Interested in software development, data-driven decision making, and information security</li>
-			<li>A member of the Clemson cycling team and the Clemson Symphony</li>
-		</ul>	
-		
-
-		<h2>Social Media Links</h2>
-			<table>
-				<thead>
-					<th>
-						<a href="https://www.linkedin.com/in/ben-coomes-95a58aaa">
-							<img src="In-2C-101px-R.png" height="100">
-						</a>
-					</th>
-					<th>
-						<a href="https://www.facebook.com/ben.coomes.355">
-							<img src="FB-f-Logo__blue_100.png" height="100">
-						</a>
-					</th>
-					<th>
-						<a href="https://www.strava.com/athletes/14916005">
-							<img src="strava-logo.png" height="100">
-						</a>
-					</th>
-			</table>
-		
-
-		<a href="ben-info-resume.html"><h2>Resume v</h2></a>
-		
-
-		<h2> Videos </h2>
-		<iframe width="560" height="315" src="https://www.youtube.com/embed/nu_njpxHFgg" frameborder="0" allowfullscreen></iframe>
-		<iframe width="560" height="315" src="https://www.youtube.com/embed/ExVvuhQA66Q" frameborder="0" allowfullscreen></iframe>
 	</body>
 
 </html>
