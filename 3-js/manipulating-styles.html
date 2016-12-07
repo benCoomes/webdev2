@@ -1,0 +1,54 @@
+<html>
+	<head>
+		<title>javascript</title>
+	</head>
+
+	<body>
+
+		<p id="p1">Was ist das?</p>
+
+		<button id="b1">change text</button>
+
+		<p id="p2">Javascript is ... </p>
+
+		<button id="b2">apppend text</button>
+
+		<p id="empty"></p>
+
+		<button id="b3">Create text</button>
+
+		<p id="more-text">Make me stylish</p>
+
+		<button id="b4">Style it!</button>
+
+		<script type="text/javascript">
+			var isGerman = true;
+			document.getElementById('b1').onclick = function(){
+				if(isGerman === true){
+					document.getElementById("p1").innerHTML = "What is that?";
+					isGerman = false; 
+				}
+				else{
+					document.getElementById("p1").innerHTML = "Was ist das?";
+					isGerman = true;
+				}
+
+			}
+
+			document.getElementById('b2').onclick = function(){
+				document.getElementById('p2').innerHTML += "wierd."	;
+			}
+
+			document.getElementById('b3').onclick = function(){
+				document.getElementById('empty').innerHTML = "Ta-da!";
+			}
+
+			document.getElementById('b4').onclick = function(){
+				var text = document.getElementById('more-text');
+				text.style.color = "red";
+				text.style.fontSize = "72px";
+			}
+		</script>
+
+	</body>
+</html>

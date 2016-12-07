@@ -1,0 +1,28 @@
+<html>
+	<head>
+		<title>javascript</title>
+	</head>
+
+	<body>
+
+		<p id="p1">Was ist das?</p>
+
+		<button id="change-text-button">change text</button>
+
+		<script type="text/javascript">
+			var isGerman = true;
+			document.getElementById('change-text-button').onclick = function(){
+				if(isGerman === true){
+					document.getElementById("p1").innerHTML = "What is that?";
+					isGerman = false;
+				}
+				else{
+					document.getElementById("p1").innerHTML = "Was ist das?";
+					isGerman = true;
+				}
+
+			}
+		</script>
+
+	</body>
+</html>

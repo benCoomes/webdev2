@@ -1,0 +1,58 @@
+<html>
+	<head>
+		<title>javascript</title>
+
+		<style type="text/css">
+			div.circle{
+				position: absolute;
+				border-radius: 50%;
+			}
+
+			#c1{
+				background: rgba(120, 240, 120, 1);
+			}
+
+			#c2{
+				background: rgba(240, 120, 120, 1);
+			}
+
+			#c3{
+				background: rgba(120, 120, 240, 1);
+			}
+
+
+		</style>
+	</head>
+
+	<div id="c1" class="circle"></div>
+	<div id="c2" class="circle"></div>
+	<div id="c3" class="circle"></div>
+
+	<body>
+
+		<script type="text/javascript">
+			var width = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+			var height = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+			var radius = Math.min(width, height) / 8;
+			var spawnarea_width = width - 2*radius;
+			var spawnarea_height = height - 2*radius;
+
+			for(var i = 1; i <= 3; i++){
+				var circleId = "c" + i;
+				var circle = document.getElementById(circleId);
+
+				circle.style.width = radius * 2;
+				circle.style.height = radius * 2;
+				circle.style.left = (Math.random() * spawnarea_width);
+				circle.style.top = (Math.random() * spawnarea_height);
+
+				circle.onclick = function(){
+					this.style.display= "none";
+				}
+			}
+			
+
+		</script>
+
+	</body>
+</html>
