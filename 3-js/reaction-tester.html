@@ -1,0 +1,129 @@
+<html>
+	<head>
+		<title>Reaction Test!</title>
+
+		<head>
+			<link href="https://fonts.googleapis.com/css?family=Bungee" rel="stylesheet">
+		</head>	
+
+		<style type="text/css">
+			#target{
+				width: 300px;
+				height: 300px;
+				margin: auto;
+			}
+
+			#target-container{
+				border: 20px black solid;
+				display: block;
+				text-align: center;
+			}
+
+			#start{
+				color: black;
+				font-size: 24px;
+				padding: 10px;
+				display: block;
+				width: 100px;
+				text-align: center;
+				margin-bottom: 30px; 
+				margin-left: auto;
+				margin-right: auto;
+				border-radius: 10%;
+
+			}
+
+			#start.enabled:hover{
+				color: white;
+			}
+
+			#start.enabled{
+				cursor: pointer;
+				background-color: #00c800;
+			}
+
+			#start.disabled{
+				background-color: grey;
+				cursor: default;
+			}
+
+			body{
+				background-color: black;
+				color: white;
+				font-family: 'Bungee', cursive;
+			}
+
+			.centered{
+				text-align: center;
+			}
+
+			.left-margin{
+				margin-left: 30%
+			}
+
+			span{
+				margin-left: 10px;
+			}
+		</style>
+	</head>
+
+
+	<body>
+
+		<h1 class = "centered">Step Right Up, Test Your Reflexes!</h1>
+
+		<p class="centered">Click the target as soon as it appears!</p>
+
+		<p class="left-margin">Best Time: <span id="highscore"></span></p>
+
+		<p class="left-margin">This Time: <span id="last-attempt"></span></p>
+
+
+
+		<div id="target-container" class=centered>
+			<div id="start" class="enabled">Start</div>
+			<img id="target" src="target.png">
+		</div>
+
+		<script type="text/javascript">
+
+		var visible = true, started = false;
+		var startTime = 0, stopTime = 0, bestTime;
+
+		function showTarget(){
+			document.getElementById('target').style.visibility = "visible";
+			visible = true; 
+			startTime = new Date();
+		}
+
+		document.getElementById('target').onclick = function(){
+			if(visible && started){
+				stopTime = new Date();
+				var timediff = stopTime - startTime;
+				document.getElementById('last-attempt').innerHTML =  timediff.toString();
+				if(bestTime == undefined || timediff < bestTime){
+					bestTime = timediff;
+					document.getElementById('highscore').innerHTML = bestTime.toString();
+				}
+				started = false;
+				document.getElementById('start').className = "enabled";
+			}
+		};
+
+		document.getElementById('start').onclick = function(){
+			if(!started){
+				started = true; 
+				document.getElementById('target').style.visibility = "hidden";
+				document.getElementById('start').className = "disabled";
+				visible = false;
+				//get a random time between 2 and 8 seconds
+				var timeToWait = (Math.random() * 8000) + 2000;
+				window.setTimeout(showTarget, timeToWait);
+			}
+		}
+
+
+		</script>
+
+	</body>
+</html>

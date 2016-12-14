@@ -1,0 +1,330 @@
+[
+    {
+        "rank": 1,
+        "name": "Robert Kendrick",
+        "date": "2014-11-30T05:00:00.000Z",
+        "speed": "24.6mi/h",
+        "power": "277W",
+        "time": "1899-12-30T20:13:00.000Z"
+    },
+    {
+        "rank": 2,
+        "name": "C. Ryan Robinson",
+        "date": "2015-05-16T04:00:00.000Z",
+        "speed": "23.7mi/h",
+        "power": "169W Powermeter",
+        "time": "1899-12-30T20:44:00.000Z"
+    },
+    {
+        "rank": 3,
+        "name": "Jeff Marshall",
+        "date": "2015-05-16T04:00:00.000Z",
+        "speed": "23.7mi/h",
+        "power": "178W Powermeter",
+        "time": "1899-12-30T20:46:00.000Z"
+    },
+    {
+        "rank": 4,
+        "name": "Timo H",
+        "date": "2015-10-09T04:00:00.000Z",
+        "speed": "23.4mi/h",
+        "power": "242W Powermeter",
+        "time": "1899-12-30T20:57:00.000Z"
+    },
+    {
+        "rank": 5,
+        "name": "Brent Beadles",
+        "date": "2014-04-29T04:00:00.000Z",
+        "speed": "23.2mi/h",
+        "power": "242W",
+        "time": "1899-12-30T21:08:00.000Z"
+    },
+    {
+        "rank": 6,
+        "name": "Adam Wambaugh",
+        "date": "2013-09-16T04:00:00.000Z",
+        "speed": "22.8mi/h",
+        "power": "246W",
+        "time": "1899-12-30T21:24:00.000Z"
+    },
+    {
+        "rank": 7,
+        "name": "Alex Brown",
+        "date": "2013-02-27T05:00:00.000Z",
+        "speed": "22.4mi/h",
+        "power": "236W",
+        "time": "1899-12-30T21:39:00.000Z"
+    },
+    {
+        "rank": 8,
+        "name": "Gilbert Jackson",
+        "date": "2015-07-19T04:00:00.000Z",
+        "speed": "21.9mi/h",
+        "power": "204W",
+        "time": "1899-12-30T22:03:00.000Z"
+    },
+    {
+        "rank": 9,
+        "name": "Andrew Stolorena",
+        "date": "2015-07-19T04:00:00.000Z",
+        "speed": "21.8mi/h",
+        "power": "206W",
+        "time": "1899-12-30T22:10:00.000Z"
+    },
+    {
+        "rank": 9,
+        "name": "Conner Reinhardt",
+        "date": "2015-07-19T04:00:00.000Z",
+        "speed": "21.8mi/h",
+        "power": "196W",
+        "time": "1899-12-30T22:10:00.000Z"
+    },
+    {
+        "rank": 11,
+        "name": "Eric Hidle",
+        "date": "2015-07-19T04:00:00.000Z",
+        "speed": "21.7mi/h",
+        "power": "224W",
+        "time": "1899-12-30T22:14:00.000Z"
+    },
+    {
+        "rank": 11,
+        "name": "Jamie Hudson",
+        "date": "2015-07-19T04:00:00.000Z",
+        "speed": "21.7mi/h",
+        "power": "207W",
+        "time": "1899-12-30T22:14:00.000Z"
+    },
+    {
+        "rank": 13,
+        "name": "Ned Taylor",
+        "date": "2013-09-19T04:00:00.000Z",
+        "speed": "21.5mi/h",
+        "power": "197W",
+        "time": "1899-12-30T22:23:00.000Z"
+    },
+    {
+        "rank": 14,
+        "name": "Jen Nielson",
+        "date": "2014-06-17T04:00:00.000Z",
+        "speed": "21.4mi/h",
+        "power": "191W",
+        "time": "1899-12-30T22:29:00.000Z"
+    },
+    {
+        "rank": 15,
+        "name": "John Malley",
+        "date": "2012-12-04T05:00:00.000Z",
+        "speed": "20.8mi/h",
+        "power": "197W",
+        "time": "1899-12-30T22:57:00.000Z"
+    },
+    {
+        "rank": 16,
+        "name": "Kelli Couture",
+        "date": "2016-07-06T04:00:00.000Z",
+        "speed": "20.6mi/h",
+        "power": "154W Powermeter",
+        "time": "1899-12-30T23:06:00.000Z"
+    },
+    {
+        "rank": 17,
+        "name": "Benji Smith",
+        "date": "2015-02-27T05:00:00.000Z",
+        "speed": "20.6mi/h",
+        "power": "175W",
+        "time": "1899-12-30T23:08:00.000Z"
+    },
+    {
+        "rank": 18,
+        "name": "Kevin Baumann",
+        "date": "2016-02-17T05:00:00.000Z",
+        "speed": "20.6mi/h",
+        "power": "169W",
+        "time": "1899-12-30T23:09:00.000Z"
+    },
+    {
+        "rank": 18,
+        "name": "Ryan Becwar",
+        "date": "2016-08-16T04:00:00.000Z",
+        "speed": "20.6mi/h",
+        "power": "184W",
+        "time": "1899-12-30T23:09:00.000Z"
+    },
+    {
+        "rank": 18,
+        "name": "Ben Coomes",
+        "date": "2016-08-16T04:00:00.000Z",
+        "speed": "20.6mi/h",
+        "power": "183W",
+        "time": "1899-12-30T23:09:00.000Z"
+    },
+    {
+        "rank": 21,
+        "name": "Alex Kellum",
+        "date": "2014-01-30T05:00:00.000Z",
+        "speed": "20.5mi/h",
+        "power": "172W",
+        "time": "1899-12-30T23:16:00.000Z"
+    },
+    {
+        "rank": 21,
+        "name": "Ryan Newman",
+        "date": "2014-09-21T04:00:00.000Z",
+        "speed": "20.5mi/h",
+        "power": "160W",
+        "time": "1899-12-30T23:16:00.000Z"
+    },
+    {
+        "rank": 23,
+        "name": "Chance Cochran",
+        "date": "2014-09-21T04:00:00.000Z",
+        "speed": "20.3mi/h",
+        "power": "205W",
+        "time": "1899-12-30T23:22:00.000Z"
+    },
+    {
+        "rank": 24,
+        "name": "kyle morgan",
+        "date": "2016-08-14T04:00:00.000Z",
+        "speed": "20.1mi/h",
+        "power": "169W",
+        "time": "1899-12-30T23:37:00.000Z"
+    },
+    {
+        "rank": 25,
+        "name": "Andrew Clarke",
+        "date": "2012-09-05T04:00:00.000Z",
+        "speed": "20.1mi/h",
+        "power": "173W",
+        "time": "1899-12-30T23:38:00.000Z"
+    },
+    {
+        "rank": 26,
+        "name": "Edward Couvillion",
+        "date": "2012-06-06T04:00:00.000Z",
+        "speed": "19.5mi/h",
+        "power": "152W",
+        "time": "1899-12-31T00:07:00.000Z"
+    },
+    {
+        "rank": 27,
+        "name": "chris Calder",
+        "date": "2016-09-26T04:00:00.000Z",
+        "speed": "19.5mi/h",
+        "power": "154W",
+        "time": "1899-12-31T00:08:00.000Z"
+    },
+    {
+        "rank": 28,
+        "name": "Marc Clinton",
+        "date": "2012-10-15T04:00:00.000Z",
+        "speed": "19.1mi/h",
+        "power": "162W",
+        "time": "1899-12-31T00:36:00.000Z"
+    },
+    {
+        "rank": 29,
+        "name": "Everett Engstrom",
+        "date": "2016-09-15T04:00:00.000Z",
+        "speed": "19.0mi/h",
+        "power": "190W",
+        "time": "1899-12-31T00:38:00.000Z"
+    },
+    {
+        "rank": 30,
+        "name": "Kyle Worthy",
+        "date": "2016-08-16T04:00:00.000Z",
+        "speed": "18.8mi/h",
+        "power": "148W",
+        "time": "1899-12-31T00:52:00.000Z"
+    },
+    {
+        "rank": 31,
+        "name": "Steve Worthy",
+        "date": "2016-08-16T04:00:00.000Z",
+        "speed": "18.8mi/h",
+        "power": "151W",
+        "time": "1899-12-31T00:54:00.000Z"
+    },
+    {
+        "rank": 32,
+        "name": "B Seligson",
+        "date": "2015-08-16T04:00:00.000Z",
+        "speed": "18.6mi/h",
+        "power": "141W",
+        "time": "1899-12-31T01:07:00.000Z"
+    },
+    {
+        "rank": 32,
+        "name": "Alan Saracina",
+        "date": "2016-04-08T04:00:00.000Z",
+        "speed": "18.6mi/h",
+        "power": "143W",
+        "time": "1899-12-31T01:07:00.000Z"
+    },
+    {
+        "rank": 34,
+        "name": "Andrew McQueen",
+        "date": "2016-05-22T04:00:00.000Z",
+        "speed": "18.5mi/h",
+        "power": "147W",
+        "time": "1899-12-31T01:09:00.000Z"
+    },
+    {
+        "rank": 35,
+        "name": "Gary Swingle",
+        "date": "2016-05-22T04:00:00.000Z",
+        "speed": "18.2mi/h",
+        "power": "171W",
+        "time": "1899-12-31T01:29:00.000Z"
+    },
+    {
+        "rank": 36,
+        "name": "Chris Marler",
+        "date": "2013-02-14T05:00:00.000Z",
+        "speed": "18.0mi/h",
+        "power": "129W",
+        "time": "1899-12-31T01:46:00.000Z"
+    },
+    {
+        "rank": 37,
+        "name": "Colby Poplin",
+        "date": "2014-08-18T04:00:00.000Z",
+        "speed": "17.9mi/h",
+        "power": "150W",
+        "time": "1899-12-31T01:51:00.000Z"
+    },
+    {
+        "rank": 38,
+        "name": "Patrick Smith",
+        "date": "2016-02-09T05:00:00.000Z",
+        "speed": "17.7mi/h",
+        "power": "201W Powermeter",
+        "time": "1899-12-31T02:09:00.000Z"
+    },
+    {
+        "rank": 39,
+        "name": "kevin jett",
+        "date": "2016-10-02T04:00:00.000Z",
+        "speed": "17.4mi/h",
+        "power": "124W",
+        "time": "1899-12-31T02:25:00.000Z"
+    },
+    {
+        "rank": 40,
+        "name": "Andrew Dyke",
+        "date": "2014-09-03T04:00:00.000Z",
+        "speed": "16.7mi/h",
+        "power": "128W",
+        "time": "1899-12-31T03:24:00.000Z"
+    },
+    {
+        "rank": 41,
+        "name": "Liam A.",
+        "date": "2015-03-07T05:00:00.000Z",
+        "speed": "15.8mi/h",
+        "power": "137W",
+        "time": "1899-12-31T04:43:00.000Z"
+    }
+]

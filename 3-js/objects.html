@@ -1,0 +1,79 @@
+<html>
+	<head>
+		<title>javascript</title>
+
+		<style type="text/css">
+
+		</style>
+	</head>
+
+
+	<body>
+
+		<script type="text/javascript">
+
+			// four variables are created and assigned in a single go, 
+			// separated by commas
+			var myObj = new Object(),
+			    str = "myString",
+			    rand = Math.random(),
+			    obj = new Object();
+
+			/*
+				Property names that would be illegal with a dot operator can 
+				be used with the [] accessor. This is especially helpful when using
+				runtime-determined property keys. 
+			*/
+			myObj.type              = "Dot syntax";
+			myObj["date created"]   = "String with space";
+			myObj[str]              = "String value";
+			myObj[rand]             = "Random Number";
+			myObj[obj]              = "Object";
+			myObj[""]               = "Even an empty string";
+
+			console.log(myObj);
+
+
+			/*
+				This function demonstrates many things. 
+
+				The first is that the enumerable properties of an object can all be
+				accessed using the for .. in construction. 
+
+				It also shows that variables can be used with bracket notation to access
+				object properties. 
+
+				Finally, the hasOwnProperty method returns a boolean indicating if the
+				object it is called on has a property with a key that matches the parameter
+
+			*/
+			function showProperties(obj, objName){
+				var result = "";
+				for (var i in obj) {
+					if (obj.hasOwnProperty(i)){
+						result += objName + "." + i + " = "+ obj[i] + "\n";
+					}
+				}
+				return result;
+			}
+
+			console.log(showProperties(myObj, "myObj"));
+
+			/*
+				properties can be deleted
+			*/
+			delete myObj[rand];
+
+
+			/*
+				bracket notation evaluated the value passed to it, dot notation uses the name of 
+				the property
+			*/
+			var propName = "myString";
+			console.log("with dot notation: " + myObj.propName, ". With [] notation: " + myObj[propName])
+
+
+		</script>
+
+	</body>
+</html>

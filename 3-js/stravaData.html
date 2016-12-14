@@ -1,0 +1,121 @@
+<html>
+	<head>
+
+		<style type="text/css">
+			td{
+				margin: 5px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<form id="jsonFile" name="jsonFile" enctype="multipart/form-data" method="post">
+				<h2>JSON Segment File</h2>
+				<input type="file" id="fileinput" value="stravaData.json">
+				<input type="button" id="btnLoad" value="Show Statistics" onclick="loadFile();">
+		</form>
+
+		<table id="plaintable"></table>
+
+
+		<script type="text/javascript">
+
+		function loadFile(){
+			var input, file, fr;
+
+			if(!window.FileReader){
+				alert("Oops, the File API is not supported on this browser yet.");
+				return;
+			}
+
+			input = document.getElementById('fileinput');
+			if(!input){
+				alert("Oops, could not find the fileinput element");
+			}
+			else if (!input.files){
+				alert("This browser does not support the files property of file inputs.");
+			}
+			else if(!input.files[0]){
+				alert("Please select a file, then click load");
+			}
+			else{
+				file = input.files[0];
+				fr = new FileReader();
+				fr.onload = showStats;
+				fr.readAsText(file);
+			}
+		}
+
+		function showStats(e){
+			var lines = e.target.result;
+			var data = JSON.parse(lines);
+			showTable("plaintable", data);
+			console.log(data);
+		}
+
+		function showTable(tableId, jsonData){
+			var table = document.getElementById(tableId);
+			if(!table){
+				alert("Element with Id of " + tableId + " not found!");
+			}
+
+			var keys = ["rank" , "name", "time"];
+			var tableHTML = makeTableHeader(keys);
+			tableHTML += "<tbody>";
+			/* for in iterates over the properties of an object. 
+				In this case, the object is an array
+				and the properties are the indicies
+				This is why the variable of iteration is named
+				index and not object.
+			*/
+			for(var index in jsonData){
+				var timeString = jsonData[index]["time"].slice(11,16);
+				var minutes = Number(timeString.substring(0,2)) - 5
+				if(minutes <=0 ){
+					minutes += 24;
+				}
+				timeString = minutes.toString() + timeString.substring(2);
+				jsonData[index]["time"] = timeString;
+				tableHTML += toTableRow(jsonData[index], keys);
+			}
+			tableHTML += "</tbody>";
+			document.getElementById('plaintable').innerHTML = tableHTML;
+		}
+
+		/* creates an html table row string based on the obj param
+		   if keys param is present, uses keys to select properties
+		*/
+		function toTableRow(obj, keys){
+			var row = "<tr>";
+			if(keys == undefined){
+				for(prop in obj){
+					row += "<td>" + obj[prop].toString() + "</td>";
+				}	
+			}
+			else{
+				for(index in keys){
+					if(obj.hasOwnProperty(keys[index])){
+						row += "<td>" + obj[keys[index]].toString() + "</td>";
+					}
+					else{
+						console.log("Warning: In toTableRow() - specified property key not found in obj.")
+					}
+				}
+			}
+
+			row += "</tr>";
+			return row;
+		}
+
+		function makeTableHeader(columnNames){
+			var head = "<thead>";
+			columnNames.forEach(function(element){
+				head += "<th>" + element.toString() + "</th>";
+			});
+			head += "</thead>"
+			return head;
+		}
+
+		</script>
+	</body>
+</html>

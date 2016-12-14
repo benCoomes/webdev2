@@ -1,0 +1,102 @@
+<html>
+	<head>
+		<title>Functions</title>
+
+
+		<style type="text/css">
+			
+		</style>
+	</head>
+
+
+	<body>
+
+		<script type="text/javascript">
+			//fucntions can be used before they are declared
+			console.log(doMath(1, 2, 3)); // 7
+
+			// extra operators are truncated, no error is returned
+			console.log(doMath(1, 2, 3, 4)); // 7
+
+			//the function can be called with less than the number of declared parameters
+			console.log(doMath(1, 1));  // 4
+			console.log(doMath()); // 12
+
+			function doMath(first, second, third){
+				// parameters can be ommitted. if they are, the value is set to undefined.
+				first = (first == undefined ? 3 : first);
+				second = (second == undefined ? 3 : second);
+				third = (third == undefined ? 3 : third);
+
+				return first + (second * third);
+			}
+
+
+			/* 
+				the variables local to a function are preserved even after the fucntion returns. 
+				This feature - being able to reference a specific local variable in an enclosing 
+				function - is called closure. 
+			*/
+			function yellSomething(something){
+				var inCaps = something.toUpperCase();
+				return function(){
+					console.log(inCaps);
+				}
+			}
+
+			var yellMagic = yellSomething("magic!");
+			var yellWitchcraft = yellSomething("witchcraft");
+
+			yellMagic();
+			yellWitchcraft()
+
+			//recursion is just as it always was
+			function isEven(value){
+				if(value == 0){
+					return true;
+				}
+				else if (value == 1){
+					return false;
+				}
+
+				if(value > 0){
+					return isEven(value - 2);
+				}
+				else{
+					return isEven(value + 2);
+				}
+			}
+
+			console.log(isEven(23), isEven(-12346));
+
+			function sum(numberArray){
+				var sum = 0;
+				for(var i = 0; i < numberArray.length; i++){
+					sum += numberArray[i];
+				}
+				return sum;
+			}
+
+			function range(start, end, step){
+				var myRange = [];
+				if (step == undefined){
+					step = 1;
+				}
+
+				var i = 0;
+				while(start <= end){
+					myRange[i] = start;
+					start += step;
+					i++;
+				}
+
+				return myRange;
+			}
+
+			console.log(range(1, 10, 2));
+			console.log(sum(range(1, 10, 2)));
+
+		</script>
+
+	</body>
+</html>

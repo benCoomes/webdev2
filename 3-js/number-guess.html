@@ -1,0 +1,73 @@
+<html>
+	<head>
+		<title>javascript</title>
+
+		<style type="text/css">
+			.wrong{
+				color: red;
+			}
+
+			.correct{
+				color: green;
+			}
+
+			button{
+				position: relative;
+			}
+
+			#prize{
+				display: none;
+			}
+
+		</style>
+	</head>
+
+
+	<body>
+		<p>Guess a number between 1 and 1 to win a major award! </p>
+
+		<form>
+			<select id="guess">
+				<option value="1">1</option>
+				<option value="1">one</option>
+				<option value="1">Juan</option>
+			</select>
+		</form>
+
+		<button id="button">Submit</button>
+
+		<p id="guess-result"></p>
+
+		<img id="prize" src="major-awards.jpg">
+
+
+		<script type="text/javascript">
+			document.getElementById('button').onclick = function(){
+				var guess = document.getElementById('guess').value;
+				var rand = Math.floor(Math.random() * 1) + 1;
+				if(guess == rand){
+					document.getElementById('guess-result').innerHTML = '<span class="correct"> You guessed correctly! The number was ' + rand + '.</span>';
+					document.getElementById('prize').style.display = "block";
+				}
+				else{
+					document.getElementById('guess-result').innerHTML = '<span class="wrong"> You were wrong! The number was ' + rand + '.</span';
+				}
+			}
+
+			var isLeft = true;
+			document.getElementById('button').onmouseover = function(){
+				if(isLeft){
+					this.style.left = "55px";
+					isLeft = false;
+				}
+				else{
+					this.style.left = "0px";
+					isLeft = true; 
+				}
+			}
+
+
+		</script>
+
+	</body>
+</html>
