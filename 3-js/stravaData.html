@@ -79,7 +79,7 @@
 				tableHTML += toTableRow(jsonData[index], keys);
 			}
 			tableHTML += "</tbody>";
-			document.getElementById('plaintable').innerHTML = tableHTML;
+			document.getElementById(tableId).innerHTML = tableHTML;
 		}
 
 		/* creates an html table row string based on the obj param
