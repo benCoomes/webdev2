@@ -25,13 +25,17 @@
 				background-color: white;
 			}
 
+			.green{
+				background-color: green;
+			}
+
 		</style>
 	</head>
 	
 	<body>
 
 		<script type="text/javascript">
-
+	//TODO: fix problems caused when webpage is not focused on - find a way to pause animation when focus leaves
 		var animationTime = 6000;
 		var animationDelay = 400;
 		var circleCount = 20;
@@ -68,8 +72,14 @@
 
 				if(whiteCircleCount == circleCount){
 					$(".circle").removeClass("white");
-					$(".circle").data("isWhite", false);
-					whiteCircleCount = 0;
+					$(".circle").addClass("green");
+
+					setTimeout(function(){
+						$(".circle").removeClass("green");
+						$(".circle").data("isWhite", false);
+						whiteCircleCount = 0;
+					},
+					500);
 				}
 			});
 		}
