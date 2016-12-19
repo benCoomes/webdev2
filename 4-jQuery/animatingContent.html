@@ -1,0 +1,74 @@
+<html>
+	<head>
+		<title>jQuery</title>
+
+		<!-- 
+			This gets jQuery from a google cdn. jQuery can also be downloaded and used
+			locally.
+		-->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js">
+		</script>
+
+		<style type="text/css">
+			.green{
+				background-color: green;
+			}
+			.red{
+				background-color: red;
+			}
+			.blue{
+				background-color: blue;
+			}
+			.circle{
+				width: 100px;
+				height: 100px;
+				border-radius: 50%;
+				margin: 10px;
+			}
+			.square{
+				width: 100px;
+				height: 100px;
+				margin: 10px;
+			}
+
+			div.button{
+				background-color: grey;
+				color: white;
+				display: inline-block;
+				padding: 10px;
+			}
+
+		</style>
+	</head>
+
+	<body>
+
+		<div class="green circle" id="gc"></div>
+
+
+		<script type="text/javascript">
+
+			if(typeof jQuery == "undefined"){
+				console.log("jQuery is not installed");
+			} else {
+				console.log("jQuery is installed.");
+			}
+
+			//this is a jquery and a javascript keyword
+
+			$("#gc").click(function(){
+				// parameters: css properties to apply, time it takes in milliseconds, callback fucntion
+					$(this).animate({
+						width:"400px", 
+						height:"400px",
+						marginLeft:"200px",
+						marginTop:"200px"
+					}, 2000, function(){
+						$(this).css("background-color", "red");
+					});
+			});
+
+		</script>
+
+	</body>
+</html>

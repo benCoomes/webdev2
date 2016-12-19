@@ -1,0 +1,122 @@
+<html>
+	<head>
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js">
+		</script>
+
+		<style type="text/css">
+			body{
+				background-color: black;
+			}
+
+			.circle{
+				border-radius: 50%;
+				background-color: black;
+				border-width: 3px;
+				border-color: limegreen;
+				border-style: solid;
+				position: absolute;
+			}
+
+		</style>
+	</head>
+	
+	<body>
+
+		<script type="text/javascript">
+
+	//create circles based on screen size
+		var vpHeight = $(window).height();
+		var vpWidth = $(window).width();
+		var borderWidth = 3;
+		var circleDiameter = 100 + 2 * borderWidth;
+		var baseMargin = 20;
+		var animationTime = 6000;
+		var circleCount = Math.floor(vpWidth/(baseMargin + circleDiameter));
+		var whiteCircleCount = 0;
+		var circleRightMargin = baseMargin + (vpWidth%(baseMargin + circleDiameter))/(circleCount-1);
+		console.log(circleCount);
+
+		//bad idea to use body as content? elements are being appended after the script
+		var contentDiv = $("body");
+
+		for(var i = 0; i < circleCount; i++){
+			var circleId = "circle-" + i.toString();
+			var circleHTML = '<div class ="circle" id="' + circleId + '"></div>';
+			contentDiv.append(circleHTML);
+			var $circle = $("#" + circleId);
+			$circle.css({
+				"width": circleDiameter.toString() + "px",
+				"height": circleDiameter.toString() + "px",
+				"top": "0px",
+				"left": i * (circleDiameter + circleRightMargin)
+			});
+
+			$circle.data("isWhite", false);
+
+			$circle.hover(function(){
+				var $element = $(this);
+				var isWhite = $element.data("isWhite");
+				if(!isWhite){
+					$element.css("background-color", "white");	
+					$element.data("isWhite", true);
+					whiteCircleCount++;
+				}
+
+				if(whiteCircleCount == circleCount){
+					$(".circle").css("background-color", "black");
+					$(".circle").data("isWhite", false);
+					whiteCircleCount = 0;
+				}
+			});
+		}
+
+
+		(function startAnimation(i){
+			setTimeout(function() {
+				var circleId = "#circle-" + (circleCount-i).toString();
+				console.log(circleId);
+				loop(circleId);
+				if(--i){
+					startAnimation(i);
+				}
+			}, 400);
+		})(circleCount);
+
+	//circle animation fucntion
+		function loop(id){
+			var $element = $(id);
+			console.log($element.css("top"));
+			var position = pxStringToNumeric($element.css("top"));
+			var atBottom = position > (vpHeight/2);
+			console.log(position);
+			console.log(atBottom);
+			if(atBottom){
+				$element.animate({"top":"0px"}, animationTime, function(){
+					loop(id);
+				});
+			}
+			else{
+				$element.animate({"top": (vpHeight-circleDiameter-borderWidth*2).toString() + "px"}, animationTime, function(){
+					loop(id);
+				});
+			}
+
+		}
+
+	//start animation function on all circles, with callback to itself
+
+
+
+		function pxStringToNumeric(string){
+			var parsedString = string.replace("px", "");
+			var value = Number(parsedString);
+			if(value == NaN){
+				console.log("Warning: pxStringToNumeric() failed to convert parameter to number");
+			}
+			return value;
+
+		}
+		</script>
+	</body>
+</html>

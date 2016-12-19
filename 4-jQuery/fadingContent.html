@@ -1,0 +1,86 @@
+<html>
+	<head>
+		<title>jQuery</title>
+
+		<!-- 
+			This gets jQuery from a google cdn. jQuery can also be downloaded and used
+			locally.
+		-->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js">
+		</script>
+
+		<style type="text/css">
+			.green{
+				background-color: green;
+			}
+			.red{
+				background-color: red;
+			}
+			.blue{
+				background-color: blue;
+			}
+			.circle{
+				width: 100px;
+				height: 100px;
+				border-radius: 50%;
+				margin: 10px;
+			}
+			.square{
+				width: 100px;
+				height: 100px;
+				margin: 10px;
+			}
+
+			div.button{
+				background-color: grey;
+				color: white;
+				display: inline-block;
+				padding: 10px;
+			}
+
+		</style>
+	</head>
+
+	<body>
+
+		<div class="green circle" id="gc"></div>
+		<div class="red square"></div>
+		<div class="red square"></div>
+
+		<hr>
+
+		<button id="togglePoemBtn">Hide Obscene Poem</button>
+		<p>When I'm old and mankey, I'll never use a hanky.</p>
+		<p>I'll wee on plants and soil my pants</p>
+
+		<script type="text/javascript">
+
+			if(typeof jQuery == "undefined"){
+				console.log("jQuery is not installed");
+			} else {
+				console.log("jQuery is installed.");
+			}
+
+			//this is a jquery and a javascript keyword
+			$("div").click(function(){
+				$(this).fadeOut("slow", function(){
+					alert("fadeout has finished");
+				});
+			});
+
+			$("#togglePoemBtn").click(function(){
+				var display = $("p").css("display");
+				if(display == "none"){
+					$("p").fadeIn("slow");
+					$(this).html("Hide Obscene Poem");	
+				} else{
+					$("p").fadeOut("slow");
+					$(this).html("Show Obscene Poem");
+				}
+				
+			});
+
+		</script>
+
+	</body>
+</html>
