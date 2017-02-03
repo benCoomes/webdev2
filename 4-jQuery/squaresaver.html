@@ -47,8 +47,8 @@ for(var r = 0; r < col_count; r++){
 				"border-color":"black",
 				"background-color":"black"
 			});
-			$square.attr("data-r", r);
-			$square.attr("data-c", c);
+			$square.data("r", r);
+			$square.data("c", c);
 
 			continue;
 		}
@@ -64,8 +64,8 @@ for(var r = 0; r < col_count; r++){
 			"border-color":colors[c%colors.length],
 			"background-color":colors[c%colors.length]
 		});
-		$square.attr("data-r", r);
-		$square.attr("data-c", c);
+		$square.data("r", r);
+		$square.data("c", c);
 	}
 }
 
@@ -73,21 +73,40 @@ squareSwap();
 
 function squareSwap(){
 	var $blank_square = $("#blank-square");
-	var $adj_square = getRandAdj($blank_square.data(r), $blank_square.data(c));
-	$adj_square.css({
+	var $adj_square = getRandAdj($blank_square.data("r"), $blank_square.data("c"));
+	/*$adj_square.css({
 		"color":"black"
-	});
+	});*/
+}
+
+function getAdj(row, col){
+	var adjSquares = [];
+	if(row < row_count){
+		adjSquares.push({r: row + 1, c: col});
+	}
+	if(row > 0){
+		adjSquares.push({r: row - 1, c: col});
+
+	}
+	if(col < col_count){
+		adjSquares.push({r: row, c: col + 1});
+
+	}
+	if(col > 0){
+		adjSquares.push({r: row, c: col - 1});
+
+	}
+	console.log(adjSquares);
 }
 
 function getRandAdj(r, c){
-	var choice = Math.floor((Math.random() * 4));
-	var adjr = r, adjc = c;
-	if(choice === 0) adjc = c - 1;
-	else if(choice === 1) adjr = r - 1;
-	else if(choice === 2) adjr = r + 1;
-	else adjc = c + 1;
+	var adjSquares = getAdj(r, c);
 
-	return $('div[data-r="' + adjr + '"][data-c="' + adjc + '"]');
+	var choice = Math.floor((Math.random() * adjSquares.length);
+
+	// todo : get adjsquares to reuturn jquery objects
+	// randomly choose and return an object from adjSquares
+	
 }
 
 </script>
