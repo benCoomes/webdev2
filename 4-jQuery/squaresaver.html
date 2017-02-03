@@ -6,11 +6,10 @@
 		.square{
 			width: 4vw;
 			height: 4vw;
-			background-color: red;
-			border-radius: 1%;
+			/*border-radius: 1%;
 			border-color: red;
 			border-style: solid;
-			border-width: 5px;
+			border-width: 5px;*/
 			margin-right: 1vw;
 			margin-bottom: 1vw;
 			position: absolute;
@@ -27,7 +26,7 @@
 <script type="text/javascript">
 //for testing now, later change to be dynamic w/ viewing size
 var row_count = 20;
-var col_count = 8;
+var col_count = 10;
 var square_height = 5;
 var colors = ['blue', 'green', 'yellow', 'orange', 'red', 'purple'];
 
@@ -43,7 +42,7 @@ for(var r = 0; r < col_count; r++){
 			var $square = $("#blank-square");
 			$square.css({
 				"top":(r * square_height).toString() + "vw",
-				"right":(c * square_height).toString() + "vw",
+				"left":(c * square_height).toString() + "vw",
 				"border-color":"black",
 				"background-color":"black"
 			});
@@ -69,44 +68,67 @@ for(var r = 0; r < col_count; r++){
 	}
 }
 
+/*var oldr = 0, oldc = 0;*/
+
 squareSwap();
+
 
 function squareSwap(){
 	var $blank_square = $("#blank-square");
 	var $adj_square = getRandAdj($blank_square.data("r"), $blank_square.data("c"));
-	/*$adj_square.css({
-		"color":"black"
+	var new_pos;
+	var tempr, tempc;
+	tempr = $blank_square.data("r");
+	tempc = $blank_square.data("c");
+	$blank_square.data("r", $adj_square.data("r"));
+	$blank_square.data("c", $adj_square.data("c"));
+	/*oldr = $adj_square.data("r");
+	oldc = $adj_square.data("c");*/
+	$adj_square.data("r", tempr);
+	$adj_square.data("c", tempc);
+	if($adj_square.data("r") == $blank_square.data("r")){
+		var new_pos = $adj_square.data("c");
+		$adj_square.animate({"left": (new_pos * 5) + "vw"}, 1000, squareSwap);
+	}
+	else{
+		var new_pos = $adj_square.data("r");
+		$adj_square.animate({"top": (new_pos * 5) + "vw"}, 1000, squareSwap);
+	}
+}
+
+//return a list of coordinate objects for valid adjacent squares
+function getAdjCoor(row, col){
+	var adj_coor = [];
+
+	if(row < row_count) 
+		adj_coor.push({r: row + 1, c: col});
+	if(row > 0) 
+		adj_coor.push({r: row - 1, c: col});
+	if(col < col_count) 
+		adj_coor.push({r: row, c: col + 1});
+	if(col > 0) 
+		adj_coor.push({r: row, c: col - 1});
+
+	return adj_coor;
+}
+
+function getRandAdj(r, c, oldr, oldc){
+	var adj_coors = getAdjCoor(r, c);
+	/*adj_coors = adj_coors.filter(function(obj){
+		return (obj.r != oldr && obj.c != oldc);
 	});*/
-}
+	var choice = adj_coors[Math.floor(Math.random() * adj_coors.length)];
+	var $squares = $(".square");
+	var $the_square;
 
-function getAdj(row, col){
-	var adjSquares = [];
-	if(row < row_count){
-		adjSquares.push({r: row + 1, c: col});
-	}
-	if(row > 0){
-		adjSquares.push({r: row - 1, c: col});
+	$squares.each(function(){
+		if($(this).data("r") == choice["r"] &&
+			$(this).data("c") == choice["c"]){
+			$the_square = $(this);
+		}
+	});
 
-	}
-	if(col < col_count){
-		adjSquares.push({r: row, c: col + 1});
-
-	}
-	if(col > 0){
-		adjSquares.push({r: row, c: col - 1});
-
-	}
-	console.log(adjSquares);
-}
-
-function getRandAdj(r, c){
-	var adjSquares = getAdj(r, c);
-
-	var choice = Math.floor((Math.random() * adjSquares.length);
-
-	// todo : get adjsquares to reuturn jquery objects
-	// randomly choose and return an object from adjSquares
-	
+	return $the_square;
 }
 
 </script>
