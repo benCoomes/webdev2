@@ -1,0 +1,149 @@
+<html>
+<head>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
+	<style type="text/css">
+		.square{
+			width: 45px;
+			height: 45px;
+			border-radius: 10%;
+			/*border-color: red;
+			border-style: solid;
+			border-width: 5px;*/
+			margin-right: 5px;
+			margin-bottom: 5px;
+			position: absolute;
+		}
+
+		body{
+			background-color: black;
+		}
+
+	</style>
+</head>
+
+<body>
+<script type="text/javascript">
+//for testing now, later change to be dynamic w/ viewing size
+var vpw = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+var vph = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+var square_height = 50;
+
+var row_count = Math.floor(vph/square_height);
+var col_count = Math.floor(vpw/square_height);
+var voffset = (vph%square_height)/2;
+var hoffset = (vpw%square_height)/2;
+//todo: make colorGradient(first color, second color, number of steps)
+// which automatically
+var colors = ['blue', 'green', 'yellow', 'orange', 'red', 'purple'];
+
+var $contentDiv = $("body");
+
+// init squares
+for(var r = 0; r < row_count; r++){
+	for(var c = 0; c < col_count; c++){
+		//todo add blank square
+		if(r === 0 && c === 0){
+			var squareHTML = '<div class="square" id="blank-square"></div>';
+			$contentDiv.append(squareHTML);
+			var $square = $("#blank-square");
+			$square.css({
+				"top":((r * square_height) + voffset).toString() + "px",
+				"left":((c * square_height) + hoffset).toString() + "px",
+				"border-color":"black",
+				"background-color":"black"
+			});
+			$square.data("r", r);
+			$square.data("c", c);
+
+			continue;
+		}
+
+
+		var square_id = "square-" + r.toString() + "-" + c.toString();
+		var squareHTML = '<div class="square" id="' + square_id +'"></div>';
+		$contentDiv.append(squareHTML);
+		var $square = $("#" + square_id);
+		$square.css({
+			"top":((r * square_height) + voffset).toString() + "px",
+			"left":((c * square_height) + hoffset).toString() + "px",
+			"border-color":colors[c%colors.length],
+			"background-color":colors[c%colors.length]
+		});
+		$square.data("r", r);
+		$square.data("c", c);
+	}
+}
+
+/*var oldr = 0, oldc = 0;*/
+
+var oldc, oldr;
+oldr = oldc = 0;
+squareSwap();
+
+
+function squareSwap(){
+	var $blank_square = $("#blank-square");
+	var $adj_square = getRandAdj($blank_square.data("r"), $blank_square.data("c"), oldr, oldc);
+	var new_pos;
+	oldr = $blank_square.data("r");
+	oldc = $blank_square.data("c");
+	if($blank_square == undefined) console.log("blank_square is undefined");
+	if($adj_square == undefined) console.log("adj square is undefined");
+	$blank_square.data("r", $adj_square.data("r"));
+	$blank_square.data("c", $adj_square.data("c"));
+	$adj_square.data("r", oldr);
+	$adj_square.data("c", oldc);
+	if($adj_square.data("r") == $blank_square.data("r")){
+		var new_pos = $adj_square.data("c");
+		$adj_square.animate({"left": ((new_pos * square_height) + hoffset) + "px"}, 1000, squareSwap);
+	}
+	else{
+		var new_pos = $adj_square.data("r");
+		$adj_square.animate({"top": ((new_pos * square_height) + voffset) + "px"}, 1000, squareSwap);
+	}
+}
+
+//return a list of coordinate objects for valid adjacent squares
+function getAdjCoor(row, col){
+	var adj_coor = [];
+
+	if(row < row_count - 1) {
+		adj_coor.push({r: row + 1, c: col});
+	}
+	if(row > 0) {
+		adj_coor.push({r: row - 1, c: col});
+	}
+	if(col < col_count - 1) {
+		adj_coor.push({r: row, c: col + 1});
+	}
+	if(col > 0) {
+		adj_coor.push({r: row, c: col - 1});
+	}
+
+	return adj_coor;
+}
+
+function getRandAdj(r, c, oldr, oldc){
+	var adj_coors = getAdjCoor(r, c);
+	adj_coors = adj_coors.filter(function(obj){
+		return (!(obj.r == oldr && obj.c == oldc));
+	});
+	
+	var choice = adj_coors[Math.floor(Math.random() * adj_coors.length)];
+	var $squares = $(".square");
+	var $the_square;
+
+	$squares.each(function(){
+		if($(this).data("r") == choice["r"] &&
+			$(this).data("c") == choice["c"]){
+			$the_square = $(this);
+		}
+	});
+
+	return $the_square;
+}
+
+</script>
+</body>
+</html>

@@ -1,0 +1,128 @@
+<html>
+	<head>
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js">
+		</script>
+
+		<style type="text/css">
+			body{
+				background-color: black;
+			}
+
+			.circle{
+				border-radius: 50%;
+				background-color: black;
+				border-width: 3px;
+				border-color: limegreen;
+				border-style: solid;
+				position: absolute;
+				width: 4vw;
+				height: 4vw;
+				margin-right: 1vw;
+			}
+
+			.white{
+				background-color: white;
+			}
+
+			.green{
+				background-color: green;
+			}
+
+		</style>
+	</head>
+	
+	<body>
+
+		<script type="text/javascript">
+	//TODO: fix problems caused when webpage is not focused on - find a way to pause animation when focus leaves
+		var animationTime = 6000;
+		var animationDelay = 400;
+		var circleCount = 20;
+		var whiteCircleCount = 0;
+		//circles are currently 4 vw + 1 vw margin = 5vw. How to get this without hard coding it?
+		var circleWidth = 5;
+		var vpHeight = $(window).height();
+
+		//bad idea to use body as content? elements are being appended after the script
+		var $contentDiv = $("body");
+
+	//generate circle elements
+		for(var i = 0; i < circleCount; i++){
+			var circleId = "circle-" + i.toString();
+			var circleHTML = '<div class ="circle" id="' + circleId + '"></div>';
+			$contentDiv.append(circleHTML);
+			var $circle = $("#" + circleId);
+			$circle.css({
+				"top": "0px",
+				"left": (i * circleWidth).toString() + "vw"
+			});
+
+			$circle.data("isWhite", false);
+			$circle.data("atBottom", false);
+
+			$circle.hover(function(){
+				var $element = $(this);
+				var isWhite = $element.data("isWhite");
+				if(!isWhite){
+					$element.addClass("white");	
+					$element.data("isWhite", true);
+					whiteCircleCount++;
+				}
+
+				if(whiteCircleCount == circleCount){
+					$(".circle").removeClass("white");
+					$(".circle").addClass("green");
+
+					setTimeout(function(){
+						$(".circle").removeClass("green");
+						$(".circle").data("isWhite", false);
+						whiteCircleCount = 0;
+					},
+					500);
+				}
+			});
+		}
+
+	//self calling function declaration to start animation for each circle
+		(function startAnimation(i){
+			setTimeout(function() {
+				var circleId = "#circle-" + (circleCount-i).toString();
+				console.log(circleId);
+				loop(circleId);
+				if(--i){
+					startAnimation(i);
+				}
+			}, 400);
+		})(circleCount);
+
+	//circle animation fucntion
+		function loop(id){
+			var $element = $(id);
+			var atBottom = $element.data("atBottom");
+			if(atBottom){
+				$element.data("atBottom", false);
+				$element.animate({"top":"0px"}, animationTime, function(){
+					loop(id);
+				});
+			}
+			else{
+				$element.data("atBottom", true);
+				$element.animate({"top": (100 - circleWidth*2).toString() + "vh"}, animationTime, function(){
+					loop(id);
+				});
+			}
+		}
+
+		function pxStringToNumeric(string){
+			var parsedString = string.replace("px", "");
+			var value = Number(parsedString);
+			if(value == NaN){
+				console.log("Warning: pxStringToNumeric() failed to convert parameter to number");
+			}
+			return value;
+
+		}
+		</script>
+	</body>
+</html>
