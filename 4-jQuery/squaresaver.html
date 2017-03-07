@@ -25,7 +25,7 @@
 <body>
 <script type="text/javascript">
 //for testing now, later change to be dynamic w/ viewing size
-var row_count = 10;
+var row_count = 11;
 var col_count = 20;
 var square_height = 5;
 var colors = ['blue', 'green', 'yellow', 'orange', 'red', 'purple'];
@@ -89,11 +89,11 @@ function squareSwap(){
 	$adj_square.data("c", oldc);
 	if($adj_square.data("r") == $blank_square.data("r")){
 		var new_pos = $adj_square.data("c");
-		$adj_square.animate({"left": (new_pos * 5) + "vw"}, 100, squareSwap);
+		$adj_square.animate({"left": (new_pos * 5) + "vw"}, 10, squareSwap);
 	}
 	else{
 		var new_pos = $adj_square.data("r");
-		$adj_square.animate({"top": (new_pos * 5) + "vw"}, 100, squareSwap);
+		$adj_square.animate({"top": (new_pos * 5) + "vw"}, 10, squareSwap);
 	}
 }
 
