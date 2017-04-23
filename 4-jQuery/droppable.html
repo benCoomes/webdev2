@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Resizeable</title>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="jquery-ui-1.12.1/jquery-ui.min.js"></script>
+
+    <link rel="stylesheet" href="jquery-ui-1.12.1/jquery-ui.min.css">
+
+    <style>
+
+    .ui-widget-content { 
+        width: 150px; 
+        height: 150px; 
+        text-align: center;
+        font-size: 32px;
+        color: white;
+        border-radius: 20px;
+        border-width: 4px;
+        border-color: purple;
+        border-style: solid;
+        background-color: orangered;
+        padding: 16px; 
+        margin: 10px; 
+    }
+
+    .target {
+        width: 300px;
+        height: 300px;
+        background-color: white;
+        border-radius: 20px;
+        border-color: black;
+        border-style: solid;
+        text-align: center;
+        font-size: 50px;
+
+    }
+
+    .dragable {
+
+    }
+
+    </style> 
+
+</head>
+<body>
+
+    <div class="dragable ui-widget-content">
+    </div>
+
+    <div class="droppable target">
+        <p>Drop Here!</p>
+    </div>
+
+
+    <script>
+
+    $(".dragable").draggable();
+    $(".droppable").droppable({
+        over:function(event, ui){
+            $(this).css("background-color", "yellow");
+        },
+        drop:function(event, ui){
+            $(this).css("background-color", "limegreen");
+        },
+        out:function(event, ui){
+            $(this).css("background-color", "white");
+        }
+    })
+
+    </script>
+
+</body>
+</html>

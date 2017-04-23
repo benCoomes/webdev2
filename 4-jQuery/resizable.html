@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Resizeable</title>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="jquery-ui-1.12.1/jquery-ui.min.js"></script>
+
+    <link rel="stylesheet" href="jquery-ui-1.12.1/jquery-ui.min.css">
+
+    <style>
+
+    .ui-widget-content { 
+        width: 150px; 
+        height: 150px; 
+        text-align: center;
+        font-size: 32px;
+        color: white;
+        border-radius: 20px;
+        border-width: 4px;
+        border-color: purple;
+        border-style: solid;
+        background-color: orangered;
+        padding: 16px; 
+        margin: 10px; 
+    }
+
+    .sharing {
+        display:inline-block;
+    }
+
+    .container {
+        border-color: black;
+        border-style: solid;
+        border-width: 3px;
+        white-space: nowrap;
+        overflow: auto;
+        margin: 10px;
+        height:  210px;
+        width: 430px;
+    }
+
+
+    </style> 
+
+</head>
+<body>
+    <div class = "container">
+        <div id="resizable1" class="ui-widget-content sharing">
+            <p>Resizable1</p>
+        </div>
+        <div id="resizable2" class="ui-widget-content sharing">
+            <p>Resizable2</p>
+        </div>
+    </div>
+
+    <script>
+
+    $( "#resizable1" ).resizable({
+        maxHeight: 600,
+        minHeight: 100,
+        maxWidth: 800,
+        minWidth: 150,
+        alsoResize: ".container"
+    });
+    $( "#resizable2" ).resizable({
+        maxHeight: 600,
+        minHeight: 100,
+        maxWidth: 800,
+        minWidth: 150,
+        alsoResize: ".container"
+    });
+    $( "#container").resizable();
+
+    </script>
+
+</body>
+</html>

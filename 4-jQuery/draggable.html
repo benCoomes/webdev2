@@ -6,7 +6,7 @@
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <style>
 
-    #draggable { 
+    .ui-widget-content { 
         width: 150px; 
         height: 150px; 
         text-align: center;
@@ -18,21 +18,43 @@
         border-style: solid;
         background-color: orangered;
         padding: 0.5em; 
+        margin: 10px;
+    }
+
+    #box{
+        width: 300px;
+        height: 300px;
+        border-color: black;
+        border-width: 3px;
+        border-style: solid;
     }
 
     </style> 
 
 </head>
 <body>
-    <div id="draggable" class="ui-widget-content">
+    <div id="draggable0" class="ui-widget-content">
         <p>Drag me around</p>
+    </div>
+    <div id="draggable1" class="ui-widget-content">
+        <p>Drag me vertically</p>
+    </div>
+    <div id="draggable2" class="ui-widget-content">
+        <p>Drag me horizontally</p>
+    </div>
+    <div id="box">
+       <div id="draggable3" class="ui-widget-content">
+        <p>I'm trapped!</p>
+        </div> 
+
     </div>
 
     <script>
 
-    
-    $( "#draggable" ).draggable();
-    
+    $( "#draggable0" ).draggable();
+    $( "#draggable1" ).draggable({axis: "y"});
+    $( "#draggable2" ).draggable({axis: "x"});
+    $( "#draggable3" ).draggable({containment: "parent"});
 
     </script>
 
