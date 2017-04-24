@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Simple Chess</title>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="jquery-ui-1.12.1/jquery-ui.min.js"></script>
+
+    <link rel="stylesheet" href="jquery-ui-1.12.1/jquery-ui.min.css">
+
+    <style>
+
+
+
+    .square {
+        position: absolute;
+        width: 80px;
+        height: 80px;
+    }
+
+    .white-color {
+        background-color: grey;
+    }
+
+    .black-color{
+        background-color: black;
+    }
+
+
+    .square-state-highlight {
+        background-color: yellow;
+    }
+
+    .piece {
+        position: absolute;
+        width: 40px;
+        height: 40px;
+        background-color: red;
+    }
+
+    </style> 
+
+</head>
+<body>
+
+
+<script>
+row_count = 8;
+col_count = 8;
+square_height = 80;
+piece_height = 40;
+voffset = 50;
+hoffset = 50;
+colorClasses = ['white-color', 'black-color'];
+
+var $contentDiv = $("body");
+
+for(var r = 0; r < row_count; r++){
+    for(var c = 0; c < col_count; c++){
+        var square_id = "square-" + r.toString() + "-" + c.toString();
+        var squareHTML = '<div class="square" id="' + square_id +'"></div>';
+        $contentDiv.append(squareHTML);
+        var $square = $("#" + square_id);
+        $square.css({
+            "top":((r * square_height) + voffset).toString() + "px",
+            "left":((c * square_height) + hoffset).toString() + "px",
+            "z-index": -1
+        });
+        $square.addClass(colorClasses[(r+c)%2]);
+        $square.droppable({
+            over:function(event, ui){
+                $(this).addClass("square-state-highlight");
+            },
+            out:function(event, ui){
+                $(this).removeClass("square-state-highlight");
+            },
+            drop:function(event, ui){
+                $(this).removeClass("square-state-highlight");
+            }
+        });
+    }
+}
+
+rows = [0, 1, 6, 7]
+count = 0;
+for(var ri = 0; ri < 4; ri++){
+    r = rows[ri];
+    for(var c = 0; c < col_count; c++){
+        var piece_id = "piece-" + count.toString();
+        var pieceHTML = '<div class="piece" id="' + piece_id + '"></div>'
+        var square_id = "square-" + r.toString() + "-" + c.toString();
+        var $square = $("#" + square_id);
+        $contentDiv.append(pieceHTML);
+
+        var $piece = $("#" + piece_id);
+        var color = r < 4 ? "white" : "red"
+        $piece.css({
+            "background-color": color,
+            "z-index": count,
+            "top":((r * square_height) + voffset + (square_height - piece_height) / 2).toString() + "px",
+            "left":((c * square_height) + hoffset + (square_height - piece_height) / 2).toString() + "px"
+
+        });
+        $piece.draggable();
+
+
+        count += 1;
+    }
+}
+
+</script>
+
+</body>
+</html>
