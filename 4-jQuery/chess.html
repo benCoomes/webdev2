@@ -4,25 +4,58 @@
     <title>Simple Chess</title>
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="jquery-ui-1.12.1/jquery-ui.min.js"></script>
+    <script src="plugins/jquery.ui.touch-punch.js"></script>
 
     <link rel="stylesheet" href="jquery-ui-1.12.1/jquery-ui.min.css">
 
     <style>
 
+    #board {
+        position: absolute;
+        top: 50px;
+        left: 50px;
+        width: 800px;
+        height: 800px;
+        background-color: #7C9EDE;
+        z-index: -3;
+    }
+
+    #innerboard {
+        position: absolute;
+        top: 80px;
+        left: 80px;
+        width: 640px;
+        height: 640px;
+        background-color:  limegreen;
+        z-index: -2;
+
+    }
 
 
     .square {
-        position: absolute;
+        float: left;
         width: 80px;
         height: 80px;
     }
 
     .white-color {
-        background-color: grey;
+        background-color: #F6B23B;
     }
 
     .black-color{
-        background-color: black;
+        background-color: #C37F08;
+    }
+
+    .white-piece {
+        background-color: #F9DBA9;
+        color: black;
+        border-color: black;
+    }
+
+    .black-piece {
+        background-color: #422900;
+        color: white;
+        border-color: white;
     }
 
 
@@ -32,15 +65,31 @@
 
     .piece {
         position: absolute;
+        width: 38px;
+        height: 38px;
+        text-align: center;
+        border-radius: 8px;
+        border-style: solid;
+        border-width: 1px;
+    }
+
+
+    .piece div {
+        height: 10px;
         width: 40px;
-        height: 40px;
-        background-color: red;
+        display: inline-block;
+        vertical-align: middle;
+        line-height: normal;
     }
 
     </style> 
 
 </head>
 <body>
+
+<div id="board">
+    <div id = "innerboard"></div>
+</div>
 
 
 <script>
@@ -52,7 +101,7 @@ voffset = 50;
 hoffset = 50;
 colorClasses = ['white-color', 'black-color'];
 
-var $contentDiv = $("body");
+var $contentDiv = $("#innerboard");
 
 for(var r = 0; r < row_count; r++){
     for(var c = 0; c < col_count; c++){
@@ -61,8 +110,6 @@ for(var r = 0; r < row_count; r++){
         $contentDiv.append(squareHTML);
         var $square = $("#" + square_id);
         $square.css({
-            "top":((r * square_height) + voffset).toString() + "px",
-            "left":((c * square_height) + hoffset).toString() + "px",
             "z-index": -1
         });
         $square.addClass(colorClasses[(r+c)%2]);
@@ -86,25 +133,61 @@ for(var ri = 0; ri < 4; ri++){
     r = rows[ri];
     for(var c = 0; c < col_count; c++){
         var piece_id = "piece-" + count.toString();
-        var pieceHTML = '<div class="piece" id="' + piece_id + '"></div>'
+        var pieceType = getPieceType(r, c);
+        var pieceHTML = '<div class="piece" id="' + piece_id + '"><div>' + pieceType + '</div></div>'
         var square_id = "square-" + r.toString() + "-" + c.toString();
         var $square = $("#" + square_id);
         $contentDiv.append(pieceHTML);
 
         var $piece = $("#" + piece_id);
-        var color = r < 4 ? "white" : "red"
+        var color = r < 4 ? "white-piece" : "black-piece"
         $piece.css({
-            "background-color": color,
             "z-index": count,
-            "top":((r * square_height) + voffset + (square_height - piece_height) / 2).toString() + "px",
-            "left":((c * square_height) + hoffset + (square_height - piece_height) / 2).toString() + "px"
+            "top":((r * square_height) + (square_height - piece_height) / 2).toString() + "px",
+            "left":((c * square_height) + (square_height - piece_height) / 2).toString() + "px"
 
         });
-        $piece.draggable();
-
+        $piece.addClass(color);
+        $piece.draggable({
+            containment: "#board"
+        });
 
         count += 1;
     }
+}
+
+function getPieceType(r, c){
+    var type;
+    if(r == 1 || r == 6){
+        type = "P";
+    }
+    else if(r == 0 || r == 7){
+        if(c == 0 || c == 7){
+            type = "R";
+        }
+        else if(c == 1 || c == 6){
+            type = "N";
+        }
+        else if(c == 2 || c == 5){
+            type = "B"
+        }
+        else if(c == 3){
+            type = "Q"
+        }
+        else if(c == 4){
+            type = "K"
+        }
+        else{
+            //error
+            type = "X"
+        }
+    }
+    else{
+        // error 
+        type = "X";
+    }
+
+    return type;
 }
 
 </script>
