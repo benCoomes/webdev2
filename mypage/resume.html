@@ -14,7 +14,7 @@
 
     <style type="text/css">
 
-      #my-hr{
+      #resume-hr{
         background-color:black; 
         height:3px;
         margin-right: 1rem;
@@ -29,12 +29,12 @@
         font-size: 18px;
       }
 
-      .row p{
+      #resume-content p{
         margin-bottom: 0.5rem;
         margin-left: 1rem;
       }
 
-      .content-row {
+      #resume-content .content-row {
         margin-left: 0.25rem;
         margin-bottom: 0.5rem;
         border-left-width: 0.25rem;
@@ -42,12 +42,12 @@
         border-left-color: lightgrey;
       }
 
-      .tp-col {
+      #resume-content .tp-col {
         font-size: 16px;
       }
 
       @media(min-width:576px){
-        #my-hr{
+        #resume-hr{
           margin-right:0rem;
           margin-left:0rem;
         }
@@ -56,7 +56,7 @@
           text-align: left!important;
         }
 
-        .tp-col {
+        #resume-content .tp-col {
           font-size: inherit;
         }
       }
@@ -99,7 +99,7 @@
       </div>
       </div>
 
-      <div class="row mb-3 mt-3" id="my-hr"></div>
+      <div class="row mb-3 mt-3" id="resume-hr"></div>
 
       <div class="row">
         <div class="col-sm-12">
@@ -225,5 +225,22 @@
     <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+
+    <script type="text/javascript">
+    var count = 0;
+    var colors = ["#6FF229", "#29F27C", "#29EEF2", "#29ABF2",
+                  "#295EF2", "#6829F2", "#D429F2", "#F2294E",
+                  "#F35229", "#F29429","#D0F229"];
+    $(".content-row").each(function(index){
+      var id = "resume-cr-" + count;
+      $(this).css({
+        "border-left-color": colors[count%colors.length]
+      });
+
+      count += 1;
+    });
+
+
+    </script>
   </body>
 </html>
