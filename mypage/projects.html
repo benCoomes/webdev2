@@ -12,12 +12,9 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
 
+    <link rel="stylesheet" type="text/css" href="css/content-style.css">
+
     <style type="text/css">
-      @media(min-width:576px){
-        #project-content {
-          padding: 2rem 2rem;
-        }
-      }
     </style>
 
 
@@ -27,12 +24,12 @@
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <a class="navbar-brand" href="home.html">Ben Coomes</a>
+      <a class="navbar-brand" href="index.html">Ben Coomes</a>
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item menu-item">
-            <a class="nav-link" href="home.html">About</a>
+            <a class="nav-link" href="index.html">About</a>
           </li>
           <li class="nav-item menu-item">
             <a class="nav-link" href="resume.html">Resume</a>
@@ -47,22 +44,60 @@
       </div>
     </nav>
 
-    <div class="container">
-      <div class="jumbotron" id="project-content">
-        <h3> Project Sol </h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-
-        <h3> Optum </h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-
-        <h3> CPSC 3620 </h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    <div class="container content-container">
+      <div class="row">
+        <div class="col-sm-12">
+          <h1>Web Development</h1>
+        </div>
       </div>
+
+      <div class="row content-row">
+        <div class="col-sm-12">
+          <h2>Squaresaver</h2>
+          <p><a href="squaresaver.html">A relaxing exercise in jQuery and animations.</a></p>
+        </div>
+      </div> 
+
+      <div class="row content-row">
+        <div class="col-sm-12">
+        <h2>Simple Chess:</h2>
+          <p><a href="simplechess.html">A 'minimalist' (lazy) implementation of Chess using jQuery.</a></p>
+        </div>
+      </div> 
+      <div class="row">
+        <div class="col-sm-12">
+          <h1>Classes</h1>
+        </div>
+      </div>
+
+      <div class="row content-row">
+        <div class="col-sm-12">
+          <h2>CPSC 3620 - Mini-Supercomputer</h2>
+          <p>I worked with a small team to build a minature supercomputer using cloudlab resources! Our cluster was modeled after the Trestles HPC System and could run MPI programs supported by a Lustre filesystem.</p>
+        </div>
+      </div> 
+
+      <div class="row">
+        <div class="col-sm-12">
+          <h1>Creative Inquiry</h1>
+        </div>
+      </div>
+
+      <div class="row content-row">
+        <div class="col-sm-12">
+          <h2>Project Sol</h2>
+          <p>During my sophmore year, I was part of a team that developed a cloud-based system to monitor solar radiation levels around the Clemson area. We developed sensors using Rasperry Pis equipped with photoresistors. These sensors published readings to an MQTT broker, which subsequently stored them in a Cloudant database. My primary role was the development of a R-Shiny application to display the collected data in an interactive website.</p>
+        </div>
+      </div> 
+
     </div>
 
     <!-- jQuery first, then Tether, then Bootstrap JS. -->
     <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+
+    <!-- My scripts -->
+    <script src="js/content-coloring.js"></script>
   </body>
 </html>

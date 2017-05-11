@@ -1,0 +1,31 @@
+.content-container h1{
+  font-size: 24px;
+  margin-top: 1rem;
+}
+
+.content-container h2{
+  font-size: 18px;
+}
+
+.content-row p{
+  margin-bottom: 0.5rem;
+  margin-left: 1rem;
+}
+
+.content-row {
+  margin-left: 0.25rem;
+  margin-bottom: 0.5rem;
+  border-left-width: 0.25rem;
+  border-left-style: solid;
+  border-left-color: lightgrey;
+}
+
+.tp-col {
+  font-size: 16px;
+}
+
+@media(min-width:576px){
+  .tp-col {
+    font-size: inherit;
+  }
+}

@@ -12,38 +12,14 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
 
-    <style type="text/css">
+    <link rel="stylesheet" type="text/css" href="css/content-style.css">
 
+    <style type="text/css">
       #resume-hr{
         background-color:black; 
         height:3px;
         margin-right: 1rem;
         margin-left:1rem;
-      }
-
-      #resume-content h1{
-        font-size: 24px;
-      }
-
-      #resume-content h2{
-        font-size: 18px;
-      }
-
-      #resume-content p{
-        margin-bottom: 0.5rem;
-        margin-left: 1rem;
-      }
-
-      #resume-content .content-row {
-        margin-left: 0.25rem;
-        margin-bottom: 0.5rem;
-        border-left-width: 0.25rem;
-        border-left-style: solid;
-        border-left-color: lightgrey;
-      }
-
-      #resume-content .tp-col {
-        font-size: 16px;
       }
 
       @media(min-width:576px){
@@ -55,12 +31,7 @@
         #download-col{
           text-align: left!important;
         }
-
-        #resume-content .tp-col {
-          font-size: inherit;
-        }
       }
-
     </style>
 
 
@@ -70,12 +41,12 @@
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <a class="navbar-brand" id="my-name" href="home.html">Ben Coomes</a>
+      <a class="navbar-brand" id="my-name" href="index.html">Ben Coomes</a>
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item menu-item">
-            <a class="nav-link" href="home.html">About</a>
+            <a class="nav-link" href="index.html">About</a>
           </li>
           <li class="nav-item menu-item active">
             <a class="nav-link" href="#">Resume</a>
@@ -90,10 +61,10 @@
       </div>
     </nav>
 
-    <div class="container" id="resume-content">
+    <div class="container content-container">
       <div class="row">
       <div id="download-col" class="col-sm-12 text-center">
-        <form method="get" action="./ben_coomes_resume.pdf">
+        <form method="get" action="media/ben_coomes_resume.pdf">
           <button class="btn btn-primary" type="submit">Download Resume</button>
         </form>
       </div>
@@ -226,21 +197,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
 
-    <script type="text/javascript">
-    var count = 0;
-    var colors = ["#6FF229", "#29F27C", "#29EEF2", "#29ABF2",
-                  "#295EF2", "#6829F2", "#D429F2", "#F2294E",
-                  "#F35229", "#F29429","#D0F229"];
-    $(".content-row").each(function(index){
-      var id = "resume-cr-" + count;
-      $(this).css({
-        "border-left-color": colors[count%colors.length]
-      });
+    <!-- My scripts -->
+    <script src="js/content-coloring.js"></script>
 
-      count += 1;
-    });
-
-
-    </script>
   </body>
 </html>

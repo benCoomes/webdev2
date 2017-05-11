@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Simple Chess</title>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script 
+      src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+      integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
+      crossorigin="anonymous"></script>
+    <script src="plugins/jquery.ui.touch-punch.js"></script>
+
+    <link rel="stylesheet" href="jquery-ui-1.12.1/jquery-ui.min.css">
+
+    <style>
+
+    #board {
+        position: absolute;
+        top: 50px;
+        left: 50px;
+        width: 800px;
+        height: 800px;
+        background-color: #7C9EDE;
+        z-index: -3;
+    }
+
+    #innerboard {
+        position: absolute;
+        top: 80px;
+        left: 80px;
+        width: 640px;
+        height: 640px;
+        background-color:  limegreen;
+        z-index: -2;
+
+    }
+
+
+    .square {
+        float: left;
+        width: 80px;
+        height: 80px;
+    }
+
+    .white-color {
+        background-color: #F6B23B;
+    }
+
+    .black-color{
+        background-color: #C37F08;
+    }
+
+    .white-piece {
+        background-color: #F9DBA9;
+        color: black;
+        border-color: black;
+    }
+
+    .black-piece {
+        background-color: #422900;
+        color: white;
+        border-color: white;
+    }
+
+
+    .square-state-highlight {
+        background-color: yellow;
+    }
+
+    .piece {
+        position: absolute;
+        width: 38px;
+        height: 38px;
+        text-align: center;
+        border-radius: 8px;
+        border-style: solid;
+        border-width: 1px;
+    }
+
+
+    .piece div {
+        height: 10px;
+        width: 40px;
+        display: inline-block;
+        vertical-align: middle;
+        line-height: normal;
+    }
+
+    </style> 
+
+</head>
+<body>
+
+<div id="board">
+    <div id = "innerboard"></div>
+</div>
+
+
+<script>
+row_count = 8;
+col_count = 8;
+square_height = 80;
+piece_height = 40;
+voffset = 50;
+hoffset = 50;
+colorClasses = ['white-color', 'black-color'];
+
+var $contentDiv = $("#innerboard");
+
+for(var r = 0; r < row_count; r++){
+    for(var c = 0; c < col_count; c++){
+        var square_id = "square-" + r.toString() + "-" + c.toString();
+        var squareHTML = '<div class="square" id="' + square_id +'"></div>';
+        $contentDiv.append(squareHTML);
+        var $square = $("#" + square_id);
+        $square.css({
+            "z-index": -1
+        });
+        $square.addClass(colorClasses[(r+c)%2]);
+        $square.droppable({
+            over:function(event, ui){
+                $(this).addClass("square-state-highlight");
+            },
+            out:function(event, ui){
+                $(this).removeClass("square-state-highlight");
+            },
+            drop:function(event, ui){
+                $(this).removeClass("square-state-highlight");
+            }
+        });
+    }
+}
+
+rows = [0, 1, 6, 7]
+count = 0;
+for(var ri = 0; ri < 4; ri++){
+    r = rows[ri];
+    for(var c = 0; c < col_count; c++){
+        var piece_id = "piece-" + count.toString();
+        var pieceType = getPieceType(r, c);
+        var pieceHTML = '<div class="piece" id="' + piece_id + '"><div>' + pieceType + '</div></div>'
+        var square_id = "square-" + r.toString() + "-" + c.toString();
+        var $square = $("#" + square_id);
+        $contentDiv.append(pieceHTML);
+
+        var $piece = $("#" + piece_id);
+        var color = r < 4 ? "white-piece" : "black-piece"
+        $piece.css({
+            "z-index": count,
+            "top":((r * square_height) + (square_height - piece_height) / 2).toString() + "px",
+            "left":((c * square_height) + (square_height - piece_height) / 2).toString() + "px"
+
+        });
+        $piece.addClass(color);
+        $piece.draggable({
+            containment: "#board"
+        });
+
+        count += 1;
+    }
+}
+
+function getPieceType(r, c){
+    var type;
+    if(r == 1 || r == 6){
+        type = "P";
+    }
+    else if(r == 0 || r == 7){
+        if(c == 0 || c == 7){
+            type = "R";
+        }
+        else if(c == 1 || c == 6){
+            type = "N";
+        }
+        else if(c == 2 || c == 5){
+            type = "B"
+        }
+        else if(c == 3){
+            type = "Q"
+        }
+        else if(c == 4){
+            type = "K"
+        }
+        else{
+            //error
+            type = "X"
+        }
+    }
+    else{
+        // error 
+        type = "X";
+    }
+
+    return type;
+}
+
+</script>
+
+</body>
+</html>
