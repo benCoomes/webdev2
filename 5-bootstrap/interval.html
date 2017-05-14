@@ -11,14 +11,14 @@
   <body>
     <div class="container">
       <div class="row">
-        <div class="col-md-12">
-          <h1 style="text-align:center">Interval Beeper</h1>
+        <div class="offset-md-3 col-md-9">
+          <h1>Interval Beeper</h1>
         </div>
       </div>
       <form id="myform">
         <div class="form-group row">
-          <label for="interval" class="col-md-4 col-form-label">Interval Length</label>
-          <div class="col-md-8 input-group">
+          <label for="interval" class="col-md-3 col-form-label">Interval Length</label>
+          <div class="col-md-4 input-group">
             <input type="number" class="form-control" id="interval" value="60">
             <select class="form-control" id="unit">
               <option>sec</option>
@@ -27,9 +27,8 @@
           </div>
         </div>
         <div class="form-group row">
-          <div class="offset-md-4 col-md-8">
-            <button id="start" type="submit" class="btn btn-primary">Start</button>
-            <button id="stop" type="submit" class="btn btn-danger">Stop</button>
+          <div class="offset-md-3 col-md-4">
+            <button id="button" type="submit" class="btn btn-primary" style="width:100%">Start</button>
           </div>
         </div>
       </form>
@@ -49,23 +48,27 @@
         event.preventDefault();
       });
 
-      $("#start").click(function(event){
+      $("#button").click(function(event){
         if(!running){
           var interval = $("#interval").val();
           var unit = $("#unit").val();
           var multiplier = unit == 'sec' ? 1000 : 60000;
           running = true;
+          $("#button").text("Stop");
+          $("#button").removeClass("btn-primary");
+          $("#button").addClass("btn-danger");
           startInterval(interval * multiplier);
         }
-      });
-
-      $("#stop").click(function(event){
-        if(running){
+        else{
           clearInterval(intervalId);
           running = false;
           intervalId = -1;
+          $("#button").text("Start");
+          $("#button").removeClass("btn-danger");
+          $("#button").addClass("btn-primary");
         }
       });
+
 
       function startInterval(delay){
         playBeep();
