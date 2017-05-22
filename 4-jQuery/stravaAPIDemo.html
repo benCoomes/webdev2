@@ -1,0 +1,38 @@
+<html>
+<head>
+	<TITLE>Strava API Demo</TITLE>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
+	<style type="text/css">
+
+	</style>
+</head>
+
+<body>
+	<button id="segmentButton">Get Segment Info</button>
+
+<script type="text/javascript">
+id = 9970045
+
+
+var $segmentButton = $("#segmentButton");
+$segmentButton.click(function(event){
+	$.ajax({
+		type: "GET",
+	    url : "https://www.strava.com/api/v3/segments/" + id + "/all_efforts",
+	    data : {per_page : "200"},
+	    headers: {"Authorization" : "Bearer 2fe524097298253fb3676f94117e7977ba50a5f1"},
+	    success : function(result){
+	    	//alert("Callback entered, see console for log of result object.");
+	    	//console.log(result);
+	    	for(item in result){
+	    		console.log(result[item]["elapsed_time"]);
+	    	}
+	    }
+	});
+});
+
+
+</script>
+</body>
+</html>
