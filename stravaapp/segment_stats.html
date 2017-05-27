@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <TITLE>Strava Segment Stats</TITLE>
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+
+    <style type="text/css">
+      h1{
+        font-size: 3rem;
+      }
+
+      h2{
+        font-size: 1.5rem;
+      }
+
+      .row{
+        margin-bottom: 1rem;
+      }
+    </style>
+  
+  </head>
+  <body>
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-sm-12">
+          <h1>Strava Segment Statistics</h1>
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-sm-12">
+          <h2>A tool to see precisely where you stack up in segment time distributions.</h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-4">
+          <button id="segmentButton" class="btn btn-primary">Get Segment Info</button>
+        </div>
+      </div>
+
+      <table class="table table-sm table-striped" id="segmentTable">
+        <thead>
+          <tr>
+            <th>Athlete ID</th>
+            <th>Segment Time (sec)</th>
+          </tr>
+        </thead>        
+      </table>
+    
+    </div>
+
+    <!-- jQuery first, then Tether, then Bootstrap JS. -->
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.min.js"
+      integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+      crossorigin="anonymous">
+    </script>
+    <script 
+      src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" 
+      integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" 
+      crossorigin="anonymous">
+    </script>
+    <script 
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" 
+      integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" 
+      crossorigin="anonymous">
+    </script>
+    <script type="text/javascript">
+      // hardcode now, use form-specified id later
+      id = 9970045
+
+
+      var $segmentButton = $("#segmentButton");
+      $segmentButton.click(function(event){
+        $.ajax({
+          type: "GET",
+            url : "https://www.strava.com/api/v3/segments/" + id + "/all_efforts",
+            data : {per_page : "200"},
+            headers: {"Authorization" : "Bearer 2fe524097298253fb3676f94117e7977ba50a5f1"},
+            success : function(result){
+              //alert("Callback entered, see console for log of result object.");
+              //console.log(result);
+              var tableHTML = $("#segmentTable").html() + "\n";
+              console.log(tableHTML);
+              for(item in result){
+                id = result[item]["athlete"]["id"];
+                time = result[item]["elapsed_time"];
+                console.log("ID: " + id + " TIME: " + time);
+                tableHTML += "<tr><td>" + id + "</td><td>" + time + "</td></tr>\n";
+              }
+              console.log(tableHTML);
+              $("#segmentTable").html(tableHTML);
+            }
+        });
+      });
+
+
+    </script>
+  </body>
+</html>
