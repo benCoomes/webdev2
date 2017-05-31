@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <TITLE>Strava Segment Stats</TITLE>
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+
+    <style type="text/css">
+      h1{
+        font-size: 3rem;
+      }
+
+      h2{
+        font-size: 1.5rem;
+      }
+
+      .row{
+        margin-bottom: 1rem;
+      }
+
+      .hidden{
+        display: none;
+      }
+
+      .hr-thin{
+        height: .25rem;
+        background-color: darkgrey;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+      }
+      
+      #auth-control{
+		margin-top: 1rem;
+      }
+      
+      
+    </style>
+  
+  </head>
+  <body>
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-sm-8">
+          <h1>Strava Segment Statistics</h1>
+        </div>
+        <div id="auth-control" class="col-sm-4"></div>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-sm-12">
+          <h2>A tool to see precisely where you stack up in segment time distributions.</h2>
+        </div>
+      </div>
+      <div class="row">
+        <label for="id_input" class="col-sm-3">Segment ID</label>
+        <div class="col-sm-4">
+            <input type="number" class="form-control" id="id_input" placeholder="123456">
+        </div>
+        <div class="col-sm-4">
+          <button id="segment-button" class="btn btn-primary">Get Segment Info</button>
+        </div>
+      </div>
+
+
+
+      <div class="hidden" id="table-content">
+        <div class="row">
+          <div class="col-sm-12">
+            <div class = "hr-thin"></div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-12">
+            <h2 id="segment-name"></h2>
+          </div>
+        </div>
+
+        <table class="table table-sm table-striped" id="segment-table">
+          <thead>
+            <tr>
+              <th>Athlete ID</th>
+              <th>Segment Time (sec)</th>
+            </tr>
+          </thead>  
+          <tbody id="segment-table-body"></tbody>      
+        </table>
+      </div>
+    
+    </div>
+
+    <!-- jQuery first, then Tether, then Bootstrap JS. -->
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.min.js"
+      integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+      crossorigin="anonymous">
+    </script>
+    <script 
+      src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" 
+      integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" 
+      crossorigin="anonymous">
+    </script>
+    <script 
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" 
+      integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" 
+      crossorigin="anonymous">
+    </script>
+    <script type="text/javascript">
+
+      var qs = (function(a) {
+        if (a == "") return {};
+        var b = {};
+        for (var i = 0; i < a.length; ++i)
+        {
+            var p=a[i].split('=', 2);
+            if (p.length == 1)
+                b[p[0]] = "";
+            else
+                b[p[0]] = decodeURIComponent(p[1].replace(/\+/g, " "));
+        }
+        return b;
+      })(window.location.search.substr(1).split('&'));
+
+     var temp_code = qs["code"];
+     var access_token;
+     var athlete;
+     if(temp_code != undefined){
+      $.ajax({
+          type: "POST",
+          url : "https://www.strava.com/oauth/token",
+          data : {client_id : "12230",
+                  client_secret : "ac2bb4a91da4c4a4254cd1ba9484ab20096bad0b",
+                  code : temp_code},
+          success : function(result){
+            console.log(result);
+            athlete = result["athlete"];
+            access_token = result["access_token"]
+            $("#auth-control").html('<p>Welcome ' + athlete["firstname"] + ' - <a href="http://stravasegmentstats-com.stackstaging.com/">Log Out</a></p>');
+          }
+     });
+    }
+    else {
+      console.log("temp code is undefined")
+      $("#auth-control").html('<p><a href="https://www.strava.com/oauth/authorize?client_id=12230&response_type=code&redirect_uri=http://stravasegmentstats-com.stackstaging.com&approval_prompt=force">Login</a></p>')
+    }
+
+      
+    var segment = {
+      id: undefined,
+      name: undefined,
+      efforts: []
+    };
+
+    /* Known problem - invalid segment names. no indication that  
+    segment was not found. */
+    $("#segment-button").click(function(event){
+      var id = $("#id_input").val();
+      $("#segment-table-body").html();
+	    get_segment_efforts(id);
+      // get this to run after get_segment_efforts completes
+      //display_segment(segment);
+    });
+
+    function get_segment_pages(id, page_num){
+        $.ajax({
+            type: "GET",
+            url : "https://www.strava.com/api/v3/segments/" + id + "/all_efforts",
+            data : {page: page_num,
+                    per_page : "200"},
+            headers: {"Authorization" : "Bearer 2fe524097298253fb3676f94117e7977ba50a5f1"},
+            success : function(result){
+              console.log(result);
+              var result_len = result.length;
+              console.log(result_len);
+              for (index in result){
+                var entry = {
+                  athlete: {
+                    id: result[index]["athlete"]["id"]
+                    // use id to get first and last name in future
+                  },
+                  time: result[index]["elapsed_time"]
+                };
+                segment["efforts"].push(entry)
+              }
+              console.log(segment["efforts"]);
+              if(result_len > 0){
+                segment["name"] = result[0]["name"];
+                get_segment_pages(id, ++page_num);
+              }
+            }
+          }); 
+    }
+                                 
+    function get_segment_efforts(id){
+      // don't fetch data if segment id matches currently segment id
+      if(segment["id"] == id){
+		    return;
+      }
+        
+      segment["id"] = id;
+      segment["efforts"] = [];
+      get_segment_pages(id, 1);
+    }
+                                
+    function display_segment(segment){
+      console.log("in display segment");
+      var tableHTML = ""
+	    for(entry in segment["efforts"]){
+        console.log(entry);
+        id = entry["athlete"]["id"];
+        time = entry["time"];
+        tableHTML += "<tr><td>" + id + "</td><td>" + time + "</td></tr>\n";     
+      }
+          
+      $("#segment-name").html(segment["name"]);
+      $("#segment-table-body").html(tableHTML);
+      $("#table-content").removeClass("hidden");
+    }
+
+
+    </script>
+  </body>
+</html>

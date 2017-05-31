@@ -22,14 +22,28 @@
       .row{
         margin-bottom: 1rem;
       }
+
+      .hidden{
+        display: none;
+      }
+
+      .hr-thin{
+        height: .25em;
+        background-color: darkgrey;
+        margin-top: 1em;
+        margin-bottom: 1em;
+      }
     </style>
   
   </head>
   <body>
     <div class="container">
       <div class="row justify-content-center">
-        <div class="col-sm-12">
+        <div class="col-sm-8">
           <h1>Strava Segment Statistics</h1>
+        </div>
+        <div class="col-sm-4">
+          <a href="https://www.strava.com/oauth/authorize?client_id=12230&response_type=code&redirect_uri=http://stravasegmentstats-com.stackstaging.com&approval_prompt=force">Login</a>
         </div>
       </div>
       <div class="row justify-content-center">
@@ -38,19 +52,40 @@
         </div>
       </div>
       <div class="row">
+        <label for="id_input" class="col-sm-3">Segment ID</label>
         <div class="col-sm-4">
-          <button id="segmentButton" class="btn btn-primary">Get Segment Info</button>
+            <input type="number" class="form-control" id="id_input" placeholder="123456">
+        </div>
+        <div class="col-sm-4">
+          <button id="segment-button" class="btn btn-primary">Get Segment Info</button>
         </div>
       </div>
 
-      <table class="table table-sm table-striped" id="segmentTable">
-        <thead>
-          <tr>
-            <th>Athlete ID</th>
-            <th>Segment Time (sec)</th>
-          </tr>
-        </thead>        
-      </table>
+
+
+      <div class="hidden" id="table-content">
+        <div class="row">
+          <div class="col-sm-12">
+            <div class = "hr-thin"></div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-12">
+            <h2 id="segment-name"></h2>
+          </div>
+        </div>
+
+        <table class="table table-sm table-striped" id="segment-table">
+          <thead>
+            <tr>
+              <th>Athlete ID</th>
+              <th>Segment Time (sec)</th>
+            </tr>
+          </thead>  
+          <tbody id="segment-table-body"></tbody>      
+        </table>
+      </div>
     
     </div>
 
@@ -71,30 +106,31 @@
       crossorigin="anonymous">
     </script>
     <script type="text/javascript">
-      // hardcode now, use form-specified id later
-      id = 9970045
 
+    /* Known problem - invalid segment names. no indication that  
+    segment was not found. */
+      $("#segment-button").click(function(event){
+        var id = $("#id_input").val();
+        $("#segment-table-body").html();
 
-      var $segmentButton = $("#segmentButton");
-      $segmentButton.click(function(event){
         $.ajax({
           type: "GET",
             url : "https://www.strava.com/api/v3/segments/" + id + "/all_efforts",
-            data : {per_page : "200"},
+            data : {per_page : "20"},
             headers: {"Authorization" : "Bearer 2fe524097298253fb3676f94117e7977ba50a5f1"},
             success : function(result){
-              //alert("Callback entered, see console for log of result object.");
-              //console.log(result);
-              var tableHTML = $("#segmentTable").html() + "\n";
-              console.log(tableHTML);
+              var tableHTML = "";
               for(item in result){
                 id = result[item]["athlete"]["id"];
                 time = result[item]["elapsed_time"];
-                console.log("ID: " + id + " TIME: " + time);
+                //console.log("ID: " + id + " TIME: " + time);
                 tableHTML += "<tr><td>" + id + "</td><td>" + time + "</td></tr>\n";
               }
-              console.log(tableHTML);
-              $("#segmentTable").html(tableHTML);
+
+              $("#segment-name").html(result[0]["name"]);
+              $("#segment-table-body").html(tableHTML);
+
+              $("#table-content").removeClass("hidden");
             }
         });
       });
